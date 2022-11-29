@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :events do
     resources :attachments do
-      resources :likes, only[:create, :destroy]
-      resources :comments, only[:create, :update, :destroy]
+      resources :likes, only: [:create, :destroy]
+      resources :comments, only: [:create, :update, :destroy]
     end
   end
 end
