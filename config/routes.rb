@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+
   resources :events do
     resources :attachments do
       resources :likes, only: [:create, :destroy]
