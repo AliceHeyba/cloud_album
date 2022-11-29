@@ -5,10 +5,11 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+
   resources :events do
     resources :attachments do
-      resources :likes, only[:create, :destroy]
-      resources :comments, only[:create, :update, :destroy]
+      resources :likes, only: [:create, :destroy]
+      resources :comments, only: [:create, :update, :destroy]
     end
   end
 end
