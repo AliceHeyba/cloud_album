@@ -1,1 +1,19 @@
-<h1>Creating an event </h1>
+<div class="container bg-white justify-content-center pt-3 pb-3">
+  <div class="row">
+    <div class="col">
+      <% if user_signed_in? %>
+        <%= simple_form_for(@event) do |f| %>
+          <%= f.input :event_name %>
+          <%= f.input :event_date, as: :datetime, html5: true %>
+          <%= f.input :event_description %>
+          <%= f.input :attendee_email %>
+          <div class="text-center">
+            <%= f.submit class:"btn btn-success btn-booking-event text-white mt-3" %>
+          </div>
+        <% end %>
+      <% else %>
+        <p>Sorry, you must be signed in to access the event page.</p>
+      <% end %>
+    </div>
+  </div>
+</div>
