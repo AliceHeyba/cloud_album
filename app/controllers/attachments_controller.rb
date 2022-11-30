@@ -1,6 +1,7 @@
 class AttachmentsController < ApplicationController
-  before_action :set_event, only: %i[index new create show edit update destroy]
+  before_action :set_event, only: [:new, :create, :index]
   before_action :set_attachment, only: %i[show edit update destroy]
+
 
   def index
     @attachments = policy_scope(Attachment).where(event: @event)
@@ -12,7 +13,8 @@ class AttachmentsController < ApplicationController
   end
 
   def show
-
+    @event = @attachment.event
+    @comment = Comment.new
   end
 
 
@@ -21,8 +23,8 @@ class AttachmentsController < ApplicationController
     @attachment.event = @event
     @attachment.user = current_user
     authorize @attachment
-    if @attachment.save!
-      redirect_to event_attachment_path(@event, @attachment), notice: "Nice! Attachments uploaded succesfully."
+    if @attachment.save
+      redirect_to attachment_path(@attachment), notice: "Nice! Attachments uploaded succesfully."
     else
       render :new, status: :unprocessable_entity
     end
@@ -34,7 +36,7 @@ class AttachmentsController < ApplicationController
 
   def update
     if @attachment.update(attachment_params)
-      redirect_to  redirect_to event_attachment_path(@event, @attachment), notice: "Attachment succesfully updated."
+      redirect_to attachment_path(@attachment), notice: "Attachment succesfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -42,7 +44,7 @@ class AttachmentsController < ApplicationController
 
   def destroy
     @attachment.destroy
-    redirect_to event_attachments_path(@event), notice: "Attachment succesfully deleted"
+    redirect_to event_path(@attachment.event), notice: "Attachment succesfully deleted"
   end
 
   private
