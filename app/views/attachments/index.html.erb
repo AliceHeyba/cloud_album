@@ -15,3 +15,5 @@
 <% if policy(Attachment).new? %>
   <%= link_to "Dear Guests, upload your beautiful media!", new_event_attachment_path(@event) %>
 <% end %>
+
+<%= link_to "Back to Event Homepage", event_path(@event) %>
