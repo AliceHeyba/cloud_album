@@ -7,7 +7,7 @@
 <% @event.attachments.each do |attachment| %>
 <%= cl_image_tag attachment.posts[0].key, width: 400, height: 300, crop: :fill %>
 <p>
-  <%= link_to "Browse attachment" , event_attachment_path(@event, attachment)%>
+  <%= link_to "Browse attachment" , attachment_path(attachment)%>
 </p>
 <%end %>
 
