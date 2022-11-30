@@ -1,0 +1,17 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Welcome to <%=@event.event_name %> </h1>
+
+<h1> All pictures of specific event</h1>
+
+<% @event.attachments.each do |attachment| %>
+<%= cl_image_tag attachment.posts[0].key %>
+<p>
+  <%= link_to "Browse attachment" , event_attachment_path(@event, attachment)%>
+</p>
+<%end %>
+
+
+<% if policy(Attachment).new? %>
+  <%= link_to "Dear Guests, upload your beautiful media!", new_event_attachment_path(@event) %>
+<% end %>
