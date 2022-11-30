@@ -1,6 +1,5 @@
 class User < ApplicationRecord
   has_many :attachments
-  has_many :events
   has_many :likes, through: :attachments
   has_many :comments, through: :attachments
 

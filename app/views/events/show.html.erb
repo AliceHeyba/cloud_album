@@ -1,5 +1,12 @@
 <%= @event.event_name %>
 
+
+  <%= link_to "View gallery", event_attachments_path(@event) %>
+
+
+
+
+
 <% if policy(@event).edit? %>
   <%= link_to "Edit your event description", edit_event_path(@event) %>
 <% end %>
@@ -11,5 +18,5 @@
 
 
 <% if policy(Attachment).new? %>
-  <%= link_to "Dear Guests, upload your beautiful media!", new_event_attachment_path(@event) %>
+  <%= link_to "Dear guests upload your beautiful media!", new_event_attachment_path(@event) %>
 <% end %>

@@ -4,6 +4,7 @@ class EventPolicy < ApplicationPolicy
     def resolve
       # scope.all same as event.all
       scope.all
+      # scope.where(user: user)
       # only show me events created by the user who's signed in
     end
   end

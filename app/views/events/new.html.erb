@@ -6,7 +6,8 @@
           <%= f.input :event_name %>
           <%= f.input :event_date, as: :datetime, html5: true %>
           <%= f.input :event_description %>
-          <%= f.input :attendee_email %>
+          <%= f.input :location %>
+          <%= f.association :guests, collection: User.all, input_html: { multiple: true }, label_method: lambda { |user| "#{user.first_name} #{user.last_name}" }, label_value: :id %>
           <div class="text-center">
             <%= f.submit class:"btn btn-success btn-booking-event text-white mt-3" %>
           </div>
