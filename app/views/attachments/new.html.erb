@@ -1,0 +1,12 @@
+<div class="container bg-white justify-content-center pt-3 pb-3">
+  <div class="row">
+    <div class="col">
+        <%= simple_form_for [@event, @attachment] do |f| %>
+           <%= f.input :posts, as: :file %>
+          <div class="text-center">
+            <%= f.submit class:"btn btn-success btn-booking-event text-white mt-3" %>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>

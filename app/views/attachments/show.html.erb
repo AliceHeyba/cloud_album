@@ -1,0 +1,19 @@
+<p style="color: green"><%= notice %></p>
+
+<h1> Showing my pictures added </h1>
+
+
+<%= cl_image_tag @attachment.posts[0].key %>
+
+
+
+<% if policy(@attachment).edit? %>
+  <%= link_to "Edit attachment", edit_event_attachment_path(@event, @attachment) %>
+<% end %>
+
+
+<% if policy(@attachment).destroy? %>
+<%= link_to "Delete your media", event_attachment_path(@event, @attachment), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}  %>
+<% end %>
+
+<%= link_to "Back to event gallery", event_attachments_path(@event) %>

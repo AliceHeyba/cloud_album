@@ -1,2 +1,15 @@
+<%= @event.event_name %>
 
-<h1>Welcome to <%=@event.event_name %> </h1>
+<% if policy(@event).edit? %>
+  <%= link_to "Edit your event description", edit_event_path(@event) %>
+<% end %>
+
+<% if policy(@event).destroy? %>
+<%= link_to "Delete your event", event_path(@event), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}  %>
+<% end %>
+
+
+
+<% if policy(Attachment).new? %>
+  <%= link_to "Dear Guests, upload your beautiful media!", new_event_attachment_path(@event) %>
+<% end %>
