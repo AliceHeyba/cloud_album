@@ -11,6 +11,7 @@
         <%= simple_form_for(@event) do |f| %>
           <%= f.input :event_description %>
           <%= f.input :location %>
+          <%= f.input :banner, as: :file %>
           <%= f.association :guests, collection: User.all, input_html: { multiple: true }, label_method: lambda { |user| "#{user.first_name} #{user.last_name}" }, label_value: :id %>
           <div class="text-center">
             <%= f.submit class:"btn btn-success btn-booking-event text-white mt-3" %>
@@ -22,5 +23,3 @@
     </div>
   </div>
 </div>
-
-

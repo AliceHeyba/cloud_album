@@ -44,7 +44,7 @@ class AttachmentsController < ApplicationController
 
   def destroy
     @attachment.destroy
-    redirect_to event_attachments_path(@event), notice: "Attachment succesfully deleted"
+    redirect_to event_attachments_path(@attachment.event), notice: "Attachment succesfully deleted"
   end
 
   private
