@@ -1,0 +1,32 @@
+.event-show-container {
+  height: 90vh;
+  background-image: url("eventshow.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+h1 {
+  color: white;
+  margin: 0px 0px 10px 20px;
+}
+
+p {
+  color: lightgray;
+  margin: 0px 0px 20px 20px;
+}
+
+.event-show-buttons {
+  margin-bottom: 20px;
+}
+
+.edit-button {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-flow: row-reverse wrap;
+  justify-content: flex-start !important;
+}

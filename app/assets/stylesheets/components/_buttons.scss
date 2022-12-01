@@ -4,6 +4,7 @@
   border: 1px solid #439cee;
   border-radius: 25px !important;
   margin: 0px 20px 0px 20px;
+  font-weight: 500;
 }
 
 .btn-secondary {
@@ -12,4 +13,15 @@
   border: 1px solid #3d69b4;
   border-radius: 25px !important;
   margin: 0px 20px 0px 20px;
+  font-weight: 500;
+}
+
+.btn-edit {
+  border-radius: 8px;
+  color: white;
+  background-color: #000000;
+  border: 1px solid #000000;
+  border-radius: 25px !important;
+  margin: 0px 20px 0px 20px;
+  font-weight: 500;
 }
