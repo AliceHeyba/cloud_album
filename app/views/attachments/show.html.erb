@@ -3,8 +3,7 @@
 <h1> Showing my pictures added </h1>
 
 
-<%= cl_image_tag @attachment.posts[0].key %>
-
+<%= cl_image_tag @attachment.posts[0].key, width: 400, height: 300, crop: :fill %>
 
 
 <% if policy(@attachment).edit? %>

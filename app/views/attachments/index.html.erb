@@ -5,7 +5,12 @@
 <h1> All pictures of specific event</h1>
 
 <% @event.attachments.each do |attachment| %>
-<%= cl_image_tag attachment.posts[0].key, width: 400, height: 300, crop: :fill %>
+<%#= cl_image_tag attachment.posts[0].key, :transformation=>[
+  {:width=>100, :crop=>"scale"},
+  {:flags=>"keep_iptc"},
+  {:exif=> true}
+  ] %>
+  <%= cl_image_tag attachment.posts[0].key, width: 400, height: 300, crop: :fill %>
 <p>
   <%= link_to "Browse attachment" , event_attachment_path(@event, attachment)%>
 </p>
