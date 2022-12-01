@@ -5,7 +5,7 @@
 <% @attachment.posts.each do |post| %>
   <%= cl_image_tag post.key, height: 300, width: 400, crop: :fill %>
 <% end %>
-<%# <%= cl_image_tag @attachment.posts[0].key, width: 400, height: 300, crop: :fill %> %>
+
 
 <% @attachment.comments.each do |comment| %>
   <p><%= comment.content %></p>
