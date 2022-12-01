@@ -2,23 +2,19 @@
   <div class="row">
     <div class="col">
       <% if user_signed_in? %>
-       <%= simple_form_for(@event) do |f| %>>
+        <%= simple_form_for(@event) do |f| %>
           <%= f.input :event_name %>
-          <%= f.input :event_date, as: :datetime, html5: true %>
-          <%#= f.input :event_date,
-              data: {
-                controller: "flatpickr",
-                flatpickr_alt_format: t("date.formats.long"),
-                flatpickr_date_format: "%B-m-Y%",
-                flatpickr_min_date: Time.zone.now
-              } %>
+        <% end %>
+        <%= simple_form_for @event, data: { controller: 'flatpickr' } do |f| %>
+          <%= f.input :event_date, as: :string, input_html: { data: { flatpickr_target: "startTime" } } %>
+        <% end %>
+        <%= simple_form_for(@event) do |f| %>
           <%= f.input :event_description %>
           <%= f.input :location %>
-          <%= f.input :banner, as: :file %>
           <%= f.association :guests, collection: User.all, input_html: { multiple: true }, label_method: lambda { |user| "#{user.first_name} #{user.last_name}" }, label_value: :id %>
-            </div class="text-center">
-              <%= f.submit class:"btn btn-success btn-booking-event text-white mt-3" %>
-            </div>
+          <div class="text-center">
+            <%= f.submit class:"btn btn-success btn-booking-event text-white mt-3" %>
+          </div>
         <% end %>
       <% else %>
         <p>Sorry, you must be signed in to access the event page.</p>
@@ -26,3 +22,5 @@
     </div>
   </div>
 </div>
+
+
