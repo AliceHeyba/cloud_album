@@ -1,1 +1,27 @@
 // Specific CSS for your home-page
+
+.home-container {
+  height: 90vh;
+  background-image: url("homephoto.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.home-h1 {
+  margin-top: 50px;
+  padding: 0px 20px 0px 20px;
+  color: white;
+}
+
+.home-p {
+  color: lightgray;
+  padding: 0px 20px 0px 20px;
+}
+
+.home-CTA-buttons {
+  margin-bottom: 20px;
+}

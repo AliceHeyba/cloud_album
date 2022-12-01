@@ -4,15 +4,50 @@
 
 
 <%= cl_image_tag @attachment.posts[0].key, width: 400, height: 300, crop: :fill %>
+<% @attachment.comments.each do |comment| %>
+  <p><%= comment.content %></p>
+<% end %>
+<div class="book-and-more-info-buttons">
+  <button type="button" class="btn btn-success text-white book-pitch-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Add your comment
+  </button>
+  <!-- The form -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Booking Form</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <%= simple_form_for [ @attachment, @comment ] do |f| %>
+            <%= f.input :content %>
+            <%= f.submit class:"btn btn-success text-white mt-3" %>
+          <% end %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
 
 
 <% if policy(@attachment).edit? %>
-  <%= link_to "Edit attachment", edit_event_attachment_path(@event, @attachment) %>
+  <%= link_to "Edit attachment", edit_attachment_path(@attachment) %>
 <% end %>
 
 
 <% if policy(@attachment).destroy? %>
-<%= link_to "Delete your media", event_attachment_path(@event, @attachment), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}  %>
+<%= link_to "Delete your media", attachment_path(@attachment), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}  %>
 <% end %>
 
 <%= link_to "Back to event gallery", event_attachments_path(@event) %>
