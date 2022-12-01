@@ -1,28 +1,28 @@
-<%= @event.event_name %>
 
+<div class="event-show-container">
+  <div class="edit-button"><% if policy(@event).edit? %>
+      <%= link_to "Edit", edit_event_path(@event), class: "btn btn-edit" %>
+  <% end %>
+  </div>
+  <div class="event-show-content">
+    <h1><%= @event.event_name %></h1>
+    <p><%= @event.event_description %></p>
+    <div class="event-show-buttons d-grid gap-2">
+    <%= link_to "View Gallery", event_attachments_path(@event), class: "btn btn-primary" %>
+    <% if policy(Attachment).new? %>
+      <%= link_to "Upload Media", new_event_attachment_path(@event), class: "btn btn-secondary" %>
+    <% end %>
+    </div>
+  </div>
+</div>
 
 <% if @event.banner.present? %>
   <%= cl_image_tag @event.banner.key, width: 400, height: 300, crop: :fill %>
-<% end %>
-
-  <%= link_to "View gallery", event_attachments_path(@event) %>
-
-
-<br>
+  <% else %>
+# put default image
+<%end%>
 
 
-<% if policy(@event).edit? %>
-  <%= link_to "Edit your event description", edit_event_path(@event) %>
-<% end %>
 
-<br>
 
-<% if policy(@event).destroy? %>
-<%= link_to "Delete your event", event_path(@event), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}  %>
-<% end %>
 
-<br>
-
-<% if policy(Attachment).new? %>
-  <%= link_to "Welcome everyone!!! Upload your beautiful media here :D !", new_event_attachment_path(@event) %>
-<% end %>
