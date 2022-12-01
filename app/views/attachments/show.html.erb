@@ -2,8 +2,11 @@
 
 <h1> Showing my pictures added </h1>
 
+<% @attachment.posts.each do |post| %>
+  <%= cl_image_tag post.key, height: 300, width: 400, crop: :fill %>
+<% end %>
 
-<%= cl_image_tag @attachment.posts[0].key, width: 400, height: 300, crop: :fill %>
+
 <% @attachment.comments.each do |comment| %>
   <p><%= comment.content %></p>
 <% end %>
@@ -33,10 +36,19 @@
   </div>
 </div>
 
+<% if policy(@comment).destroy? %>
+  <%= link_to "Delete this comment", comment_path(@comment) , data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+<% end %>
 
 
+<%= @attachment.likes.size %> Likes
 
-
+<% like = current_user.likes.find_by(attachment: @attachment) %>
+<% if like.nil? %>
+  <%= button_to "Like",  attachment_likes_path(@attachment), params: { like: { attachment_id: @attachment.id} }, data: {turbo_method: :post} %>
+<% else %>
+  <%= link_to "Unlike", like_path(like), data: {turbo_method: :delete} %>
+<% end %>
 
 
 
@@ -47,7 +59,7 @@
 
 
 <% if policy(@attachment).destroy? %>
-<%= link_to "Delete your media", attachment_path(@attachment), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}  %>
+  <%= link_to "Delete your media", attachment_path(@attachment), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}  %>
 <% end %>
 
 <%= link_to "Back to event gallery", event_attachments_path(@event) %>

@@ -6,8 +6,22 @@
 <h1><%=@event.event_name %> </h1>
 
 
+<%= form_with url: event_attachments_path(@event), method: :get, class: "d-flex" do %>
+  <%= select_tag "user_selected", options_from_collection_for_select(@event.users_with_attachments.uniq, "id", "email")
+    # params[:query]
+  %>
+  <%= submit_tag "Find media by creator", class: "btn btn-primary" %>
+<% end %>
+
+
 <% @event.attachments.each do |attachment| %>
-<%= link_to (cl_image_tag attachment.posts[0].key, width: 400, height: 300, crop: :fill), attachment_path(attachment) %>
+
+<% if attachment.posts.attached?%>
+  <%= cl_image_tag attachment.posts[0].key, width: 400, height: 300, crop: :fill %>
+  <%end %>
+<p>
+  <%= link_to "Browse attachment" , attachment_path(@event, attachment)%>
+</p>
 <%end %>
 
 <%= link_to  new_event_attachment_path(@event), class: "floating-btn" do %>
