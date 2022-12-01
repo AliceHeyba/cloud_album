@@ -1,11 +1,6 @@
 <%= @event.event_name %>
 
-
   <%= link_to "View gallery", event_attachments_path(@event) %>
-
-
-
-
 
 <% if policy(@event).edit? %>
   <%= link_to "Edit your event description", edit_event_path(@event) %>
