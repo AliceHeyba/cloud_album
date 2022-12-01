@@ -4,6 +4,8 @@ class AttachmentsController < ApplicationController
 
 
   def index
+    # if you have user_id
+    # filter the attachments by user_id
     @attachments = policy_scope(Attachment).where(event: @event)
   end
 
@@ -23,12 +25,12 @@ class AttachmentsController < ApplicationController
     @attachment.event = @event
     @attachment.user = current_user
 
-    if @attachment.meta_creation[created_at] != nil || false
-      @attachment.meta_create = meta_creation[DateCreated]
-    else
-      @attachment.meta_create = Date.tomorrow
-    end
-    raise
+    # if @attachment.meta_creation[created_at] != nil || false
+    #   @attachment.meta_create = meta_creation[DateCreated]
+    # else
+    #   @attachment.meta_create = Date.tomorrow
+    # end
+    # raise
 
     authorize @attachment
     if @attachment.save
