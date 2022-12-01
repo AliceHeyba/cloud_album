@@ -4,7 +4,11 @@
       <% if user_signed_in? %>
         <%= simple_form_for(@event) do |f| %>
           <%= f.input :event_name %>
-          <%= f.input :event_date, as: :datetime, html5: true %>
+        <% end %>
+        <%= simple_form_for @event, data: { controller: 'flatpickr' } do |f| %>
+          <%= f.input :event_date, as: :string, input_html: { data: { flatpickr_target: "startTime" } } %>
+        <% end %>
+        <%= simple_form_for(@event) do |f| %>
           <%= f.input :event_description %>
           <%= f.input :location %>
           <%= f.association :guests, collection: User.all, input_html: { multiple: true }, label_method: lambda { |user| "#{user.first_name} #{user.last_name}" }, label_value: :id %>
