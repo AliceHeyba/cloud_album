@@ -16,12 +16,9 @@
 
 <% @event.attachments.each do |attachment| %>
 
-<% if attachment.posts.attached?%>
-  <%= cl_image_tag attachment.posts[0].key, width: 400, height: 300, crop: :fill %>
+  <% if attachment.posts.attached?%>
+  <%= link_to (cl_image_tag attachment.posts[0].key, width: 400, height: 300, crop: :fill), attachment_path(attachment)%>
   <%end %>
-<p>
-  <%= link_to "Browse attachment" , attachment_path(@event, attachment)%>
-</p>
 <%end %>
 
 <%= link_to  new_event_attachment_path(@event), class: "floating-btn" do %>
