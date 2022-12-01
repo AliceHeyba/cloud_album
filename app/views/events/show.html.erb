@@ -1,22 +1,28 @@
 <%= @event.event_name %>
 
 
+<% if @event.banner.present? %>
+  <%= cl_image_tag @event.banner.key, width: 400, height: 300, crop: :fill %>
+<% end %>
+
   <%= link_to "View gallery", event_attachments_path(@event) %>
 
 
-
+<br>
 
 
 <% if policy(@event).edit? %>
   <%= link_to "Edit your event description", edit_event_path(@event) %>
 <% end %>
 
+<br>
+
 <% if policy(@event).destroy? %>
 <%= link_to "Delete your event", event_path(@event), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}  %>
 <% end %>
 
-
+<br>
 
 <% if policy(Attachment).new? %>
-  <%= link_to "Dear guests upload your beautiful media!", new_event_attachment_path(@event) %>
+  <%= link_to "Welcome everyone!!! Upload your beautiful media here :D !", new_event_attachment_path(@event) %>
 <% end %>

@@ -3,15 +3,12 @@ class LikesController < ApplicationController
   before_action :set_like, only: :destroy
 
   def create
-    @like = Like.new
+    @like = Like.new(like_params)
     @like.attachment = @attachment
     @like.user = current_user
     authorize @like
-    if @like.save
-      redirect_to attachment_path(@attachment)
-    else
-      render :new, status: :unprocessable_entity
-    end
+    @like.save
+    redirect_to attachment_path(@attachment)
   end
 
   def destroy
@@ -30,5 +27,9 @@ class LikesController < ApplicationController
   def set_like
     @like = Like.find(params[:id])
     authorize @like
+  end
+
+  def like_params
+    params.require(:like).permit(:attachment_id)
   end
 end
