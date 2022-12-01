@@ -1,8 +1,10 @@
 <p style="color: green"><%= notice %></p>
+<% if policy(Attachment).new? %>
+  <%= link_to "Back", event_path(@event), class: "btn btn-secondary" %>
+<% end %>
 
-<h1>Welcome to <%=@event.event_name %> </h1>
+<h1><%=@event.event_name %> </h1>
 
-<h1> All pictures of specific event</h1>
 
 <%= form_with url: event_attachments_path(@event), method: :get, class: "d-flex" do %>
   <%= select_tag "user_selected", options_from_collection_for_select(@event.users_with_attachments.uniq, "id", "email")
@@ -13,6 +15,7 @@
 
 
 <% @event.attachments.each do |attachment| %>
+
 <% if attachment.posts.attached?%>
   <%= cl_image_tag attachment.posts[0].key, width: 400, height: 300, crop: :fill %>
   <%end %>
@@ -21,9 +24,6 @@
 </p>
 <%end %>
 
-
-<% if policy(Attachment).new? %>
-  <%= link_to "Dear Guests, upload your beautiful media!", new_event_attachment_path(@event) %>
+<%= link_to  new_event_attachment_path(@event), class: "floating-btn" do %>
+<span class="material-icons">add</span>
 <% end %>
-
-<%= link_to "Back to Event Homepage", event_path(@event) %>

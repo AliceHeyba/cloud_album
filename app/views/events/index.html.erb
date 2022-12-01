@@ -1,7 +1,8 @@
+
 <h2 class="text-center">Attended Events</h2>
   <div class="index-container text-center">
     <div class="row">
-        <div class="card-container">
+        <div class="events-index-container">
           <% @events.each do |event| %>
             <%= link_to event_path(event), class: "text-decoration-none text-white" do %>
               <div class="card event-card text-white">
@@ -23,3 +24,4 @@
         <% end %>
     </div>
   </div>
+
