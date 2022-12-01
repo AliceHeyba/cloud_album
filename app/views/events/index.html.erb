@@ -6,7 +6,9 @@
             <%= link_to event_path(event), class: "text-decoration-none text-white" do %>
               <div class="card event-card text-white">
                 <% event.attachments.each do |attachment| %>
-                  <%= cl_image_tag attachment.posts[0].key, width: 450, height: 300, crop: :fill, class: "card-img-top" %>
+                  <% if attachment.posts.attached?%>
+                    <%= cl_image_tag attachment.posts[0].key, width: 400, height: 300, crop: :fill %>
+                    <%end %>
                 <%end %>
                 <%# <%= cl_image_tag event.photo.key, crop: :fill, class: "pitch_unique card-img-top" %>
                 <%= event.event_name %> <div class="pb-2"></div>
