@@ -4,9 +4,12 @@ class AttachmentsController < ApplicationController
 
 
   def index
-    # if you have user_id
-    # filter the attachments by user_id
-    @attachments = policy_scope(Attachment).where(event: @event)
+    if params["user_selected"]
+      user = User.find(params["user_selected"])
+      @attachments = policy_scope(Attachment).where(event: @event, user: user)
+    else
+      @attachments = policy_scope(Attachment).where(event: @event)
+    end
   end
 
   def new
