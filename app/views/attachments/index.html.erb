@@ -13,12 +13,9 @@
 
 
 <% @event.attachments.each do |attachment| %>
-<%#= cl_image_tag attachment.posts[0].key, :transformation=>[
-  {:width=>100, :crop=>"scale"},
-  {:flags=>"keep_iptc"},
-  {:exif=> true}
-  ] %>
+<% if attachment.posts.attached?%>
   <%= cl_image_tag attachment.posts[0].key, width: 400, height: 300, crop: :fill %>
+  <%end %>
 <p>
   <%= link_to "Browse attachment" , attachment_path(@event, attachment)%>
 </p>
