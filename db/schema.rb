@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema[7.0].define(version: 2022_12_01_100716) do
+=======
+ActiveRecord::Schema[7.0].define(version: 2022_12_01_115714) do
+>>>>>>> 9e41d956b1e887e9bd76d8347d9a1ba8d856e9e8
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -88,7 +92,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_01_100716) do
     t.bigint "attachment_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
     t.index ["attachment_id"], name: "index_likes_on_attachment_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -115,4 +121,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_01_100716) do
   add_foreign_key "guests", "events"
   add_foreign_key "guests", "users"
   add_foreign_key "likes", "attachments"
+  add_foreign_key "likes", "users"
 end
