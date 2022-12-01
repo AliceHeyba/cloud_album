@@ -1,3 +1,4 @@
+
 <div class="event-show-container">
   <div class="edit-button"><% if policy(@event).edit? %>
       <%= link_to "Edit", edit_event_path(@event), class: "btn btn-edit" %>
@@ -14,3 +15,14 @@
     </div>
   </div>
 </div>
+
+<% if @event.banner.present? %>
+  <%= cl_image_tag @event.banner.key, width: 400, height: 300, crop: :fill %>
+  <% else %>
+# put default image
+<%end%>
+
+
+
+
+
