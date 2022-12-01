@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   resources :events do
-    resources :attachments, only: [:new, :create, :index]
+    resources :attachments, only: [:new, :create, :index, :destroy]
   end
 
   resources :attachments, except: [:index, :new, :create] do
