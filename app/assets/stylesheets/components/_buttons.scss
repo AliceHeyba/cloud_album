@@ -1,27 +1,35 @@
 .btn-primary {
   border-radius: 8px;
-  background-color: #439cee;
-  border: 1px solid #439cee;
+  background-color: #fff;
+  border: solid 1px #fff;
+  color: #000;
   border-radius: 25px !important;
-  margin: 0px 20px 0px 20px;
+  margin: 0px 30px 0px 30px;
   font-weight: 500;
+  font-size: small;
+  text-transform: uppercase;
+  height: 40px;
 }
 
 .btn-secondary {
   border-radius: 8px;
-  background-color: #3d69b4;
-  border: 1px solid #3d69b4;
+  background-color: #000;
+  border: solid 1px #000;
+  color: white;
   border-radius: 25px !important;
-  margin: 0px 20px 0px 20px;
+  margin: 0px 30px 0px 30px;
   font-weight: 500;
+  font-size: small;
+  text-transform: uppercase;
+  height: 40px;
 }
 
 .btn-edit {
   border-radius: 8px;
   color: white;
-  background-color: #000000;
-  border: 1px solid #000000;
+  background-color: #000;
+  border: 1px solid #000;
   border-radius: 25px !important;
-  margin: 0px 20px 0px 20px;
+  margin: 0px 30px 0px 30px;
   font-weight: 500;
 }

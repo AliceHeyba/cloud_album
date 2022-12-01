@@ -1,19 +1,15 @@
 <p style="color: green"><%= notice %></p>
-
-<h1>Welcome to <%=@event.event_name %> </h1>
-
-<h1> All pictures of specific event</h1>
-
-<% @event.attachments.each do |attachment| %>
-<%= cl_image_tag attachment.posts[0].key, width: 400, height: 300, crop: :fill %>
-<p>
-  <%= link_to "Browse attachment" , attachment_path(attachment)%>
-</p>
-<%end %>
-
-
 <% if policy(Attachment).new? %>
-  <%= link_to "Dear Guests, upload your beautiful media!", new_event_attachment_path(@event) %>
+  <%= link_to "Back", event_path(@event), class: "btn btn-secondary" %>
 <% end %>
 
-<%= link_to "Back to Event Homepage", event_path(@event) %>
+<h1><%=@event.event_name %> </h1>
+
+
+<% @event.attachments.each do |attachment| %>
+<%= link_to (cl_image_tag attachment.posts[0].key, width: 400, height: 300, crop: :fill), attachment_path(attachment) %>
+<%end %>
+
+<%= link_to  new_event_attachment_path(@event), class: "floating-btn" do %>
+<span class="material-icons">add</span>
+<% end %>

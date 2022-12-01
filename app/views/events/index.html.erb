@@ -1,10 +1,11 @@
-<% @events.each do |event| %>
-  <%= event.event_name %>
-  <p>
-    <%= link_to "Browse event" , event_path(event)%>
-  </p>
-<%end %>
+<div class="events-index-container"><% @events.each do |event| %>
+    <%= event.event_name %>
+    <p>
+      <%= link_to "Browse event" , event_path(event)%>
+    </p>
+  <%end %>
 
-<% if policy(Event).new? %>
-  <%= link_to "New Event", new_event_path %>
-<% end %>
+  <% if policy(Event).new? %>
+    <%= link_to "New Event", new_event_path %>
+  <% end %>
+</div>
