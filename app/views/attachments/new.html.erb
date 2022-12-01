@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col">
         <%= simple_form_for [@event, @attachment] do |f| %>
-           <%= f.input :posts, as: :file %>
+           <%= f.input :posts, as: :file, input_html: { multiple: true } %>
           <div class="text-center">
             <%= f.submit class:"btn btn-success btn-booking-event text-white mt-3" %>
           </div>
