@@ -14,10 +14,10 @@
 <% end %>
 
 
-<% @event.attachments.each do |attachment| %>
-  <% if attachment.posts.attached?%>
-    <%= link_to (cl_image_tag attachment.posts[0].key, width: 400, height: 300, crop: :fill), attachment_path(attachment)%>
-  <%end %>
+<% @event.attachments.first.posts.each do |attachment| %>
+  <%# <% if attachment.attached? %>
+    <%= link_to (cl_image_tag attachment.key, width: 400, height: 300, crop: :fill), attachment_path(attachment)%>
+  <%# <%end %>
 <%end %>
 
 <%#= link_to  new_event_attachment_path(@event), class: "floating-btn" do %>
@@ -45,5 +45,4 @@
         </div>
       </div>
     </div>
-
 <%# end %>

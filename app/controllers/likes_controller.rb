@@ -3,7 +3,7 @@ class LikesController < ApplicationController
   before_action :set_like, only: :destroy
 
   def create
-    @like = Like.new(like_params)
+    @like = Like.new
     @like.attachment = @attachment
     @like.user = current_user
     authorize @like
@@ -15,8 +15,6 @@ class LikesController < ApplicationController
     @like.destroy
     redirect_to attachment_path(@like.attachment), status: :see_other
   end
-
-
 
   private
 
