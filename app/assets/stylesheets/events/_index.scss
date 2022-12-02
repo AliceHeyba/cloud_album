@@ -1,13 +1,17 @@
+.card-img-top {
+  height: 100%;
+  object-fit: cover;
+}
+
 .event-card {
   height: 150px;
   background-color: #CCC;
   margin-bottom: 10px;
 }
 
-.index-container {
+.event-index-container {
   display: flex;
-  align-items: center;
-  justify-content: space-around;
+  flex-direction: column;
 }
 
 // .event-container {
