@@ -2,8 +2,8 @@ class AttachmentsController < ApplicationController
   before_action :set_event, only: [:new, :create, :index]
   before_action :set_attachment, only: %i[show edit update destroy]
 
-
   def index
+    @attachment = Attachment.new
     if params["user_selected"]
       user = User.find(params["user_selected"])
       @attachments = policy_scope(Attachment).where(event: @event, user: user)
@@ -37,7 +37,7 @@ class AttachmentsController < ApplicationController
 
     authorize @attachment
     if @attachment.save
-      redirect_to attachment_path(@attachment), notice: "Nice! Attachments uploaded succesfully."
+      redirect_to event_attachments_path(@event), notice: "Nice! Attachments uploaded succesfully."
     else
       render :new, status: :unprocessable_entity
     end

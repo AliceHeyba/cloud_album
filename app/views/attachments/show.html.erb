@@ -1,6 +1,6 @@
 <p style="color: green"><%= notice %></p>
 
-<h1> Showing my pictures added </h1>
+<h1> Photos & Videos Gallery</h1>
 
 <% @attachment.posts.each do |post| %>
   <%= cl_image_tag post.key, height: 300, width: 400, crop: :fill %>
@@ -11,15 +11,13 @@
   <p><%= comment.content %></p>
 <% end %>
 <div class="book-and-more-info-buttons">
-  <button type="button" class="btn btn-success text-white book-pitch-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Add your comment
-  </button>
+  <button><i class="fa-solid fa-comment" data-bs-toggle="modal" data-bs-target="#exampleModal"></i></button>
   <!-- The form -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Booking Form</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Add your comment</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -45,21 +43,26 @@
 
 <% like = current_user.likes.find_by(attachment: @attachment) %>
 <% if like.nil? %>
-  <%= button_to "Like",  attachment_likes_path(@attachment), params: { like: { attachment_id: @attachment.id} }, data: {turbo_method: :post} %>
+  <%= button_to  attachment_likes_path(@attachment), params: { like: { attachment_id: @attachment.id} }, data: {turbo_method: :post} do %>
+    <i class="fa-regular fa-thumbs-up"></i>
+  <% end %>
 <% else %>
-  <%= link_to "Unlike", like_path(like), data: {turbo_method: :delete} %>
-<% end %>
-
+  <%= button_to like_path(like), data: {turbo_method: :delete} do %>
+    <i class="fa-solid fa-thumbs-up"></i>
+  <% end %>
+<% end  %>
 
 
 
 <% if policy(@attachment).edit? %>
-  <%= link_to "Edit attachment", edit_attachment_path(@attachment) %>
+  <%= link_to edit_attachment_path(@attachment) do %>
+  <i class="fa-solid fa-pen-to-square"></i>
+  <% end %>
 <% end %>
 
 
 <% if policy(@attachment).destroy? %>
-  <%= link_to "Delete your media", attachment_path(@attachment), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}  %>
+  <%= link_to attachment_path(@attachment), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+    <i class="fa-sharp fa-solid fa-trash"></i>
+  <% end %>
 <% end %>
-
-<%= link_to "Back to event gallery", event_attachments_path(@event) %>
