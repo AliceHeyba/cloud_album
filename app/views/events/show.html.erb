@@ -42,3 +42,11 @@
       </div>
     </div>
 </div>
+
+
+<% if @event.banner.present? %>
+  <%= cl_image_tag @event.banner.key, width: 400, height: 300, crop: :fill %>
+  <% else %>
+# put default image
+<%end%>
+

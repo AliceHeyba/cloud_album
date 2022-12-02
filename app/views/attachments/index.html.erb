@@ -14,14 +14,15 @@
 <% end %>
 
 
-<% @event.attachments.each do |attachment| %>
-  <% if attachment.posts.attached?%>
-    <%= link_to (cl_image_tag attachment.posts[0].key, width: 400, height: 300, crop: :fill), attachment_path(attachment)%>
-  <%end %>
+<% @event.attachments.first.posts.each do |attachment| %>
+  <%# <% if attachment.attached? %>
+    <%= link_to (cl_image_tag attachment.key, width: 400, height: 300, crop: :fill), attachment_path(attachment)%>
+  <%# <%end %>
 <%end %>
 
 <%#= link_to  new_event_attachment_path(@event), class: "floating-btn" do %>
     <button type="button" class="floating-btn" data-bs-toggle ="modal" data-bs-target="#exampleModal"><span class="material-icons">add</span></button>
+
                     <!-- The form -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">

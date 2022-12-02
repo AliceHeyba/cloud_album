@@ -1,14 +1,16 @@
 <nav class="navbar static-top">
   <div class="container-fluid">
     <%= link_to root_path do %>
-      <%= image_tag "cloud_logo.png", height: 50, alt: 'cloud album logo'%>
+      <%= image_tag "new_logo.png", height: 50, alt: 'cloud album logo'%>
     <% end %>
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-      <span class="navbar-toggler-icon"></span>
+      <span class="material-symbols-outlined">menu</span>
     </button>
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
       <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Cloud Album</h5>
+        <%= link_to root_path do %>
+          <%= image_tag "new_logo.png", height: 50, alt: 'cloud album logo'%>
+        <% end %>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
