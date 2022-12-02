@@ -5,16 +5,36 @@
 <% @attachment.posts.each do |post| %>
   <%= cl_image_tag post.key, height: 300, width: 400, crop: :fill %>
 <% end %>
-
-
 <% @attachment.comments.each do |comment| %>
-  <p><%= comment.content %></p>
-    <%# <% if policy(@attachment).edit? %>
-  <%#= link_to edit_comment_path(@comment) do %>
-  <%# <i class="fa-solid fa-pen-to-square"></i> %>
-  <%# end %>
-<%# end %>
-<% end %>
+    <p><%= comment.content %></p>
+      <%if policy(comment).edit? %>
+    <%#= link_to edit_comment_path(comment) do %>
+      <button type="button" data-bs-toggle ="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pen-to-square"></i></button>
+        <!-- The form -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Edit your comment</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <%= simple_form_for [ @attachment, @comment ] do |f| %>
+                  <%= f.input :content %>
+                  <%= f.submit class:"btn btn-success text-white mt-3" %>
+                <% end %>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+
 <div class="book-and-more-info-buttons">
   <i class="fa-regular fa-comment-dots"data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
 
@@ -43,8 +63,6 @@
 <% if policy(@comment).destroy? %>
   <%= link_to "Delete this comment", comment_path(@comment) , data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
 <% end %>
-
-
 <%= @attachment.likes.size %> Likes
 
 <% like = current_user.likes.find_by(attachment: @attachment) %>
@@ -53,22 +71,13 @@
     <i class="fa-regular fa-thumbs-up"></i>
   <% end %>
 <% else %>
-
   <%= link_to like_path(like), data: {turbo_method: :delete} do %>
     <i class="fa-solid fa-thumbs-up"></i>
   <% end %>
 <% end  %>
-
-
-
-
 <% if policy(@attachment).destroy? %>
   <%= link_to attachment_path(@attachment), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
     <i class="fa-sharp fa-solid fa-trash"></i>
   <% end %>
 <% end %>
-
-
-
-
 <%= link_to "Back to event gallery", event_attachments_path(@event), class:"btn btn-secondary" %>
