@@ -9,14 +9,14 @@
   justify-content: space-between;
 }
 
-h1 {
-  color: white;
+.event-show-content h1 {
+  color: black;
   margin: 0px 0px 10px 30px;
 }
 
 p {
-  color: lightgray;
-  margin: 0px 0px 20px 30px;
+  color: black;
+  margin: 10px 0px 20px 30px;
 }
 
 .event-show-buttons {
@@ -24,7 +24,7 @@ p {
 }
 
 .edit-button {
-  margin-top: 20px;
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
   flex-flow: row-reverse wrap;
