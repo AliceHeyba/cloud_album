@@ -3,6 +3,7 @@ class EventsController < ApplicationController
 
   def index
     @events = policy_scope(Event).all
+
   end
 
   def new
@@ -11,7 +12,7 @@ class EventsController < ApplicationController
   end
 
   def show
-
+    @attachment = Attachment.new
   end
 
   def create
@@ -39,7 +40,7 @@ class EventsController < ApplicationController
 
   def destroy
     @event.destroy
-    redirect_to events_path, notice: "Event succesfully deleted."
+    redirect_to root_path, notice: "Event succesfully deleted."
   end
 
   private
