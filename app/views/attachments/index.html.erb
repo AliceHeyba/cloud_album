@@ -9,16 +9,21 @@
 <%= form_with url: event_attachments_path(@event), method: :get, class: "d-flex" do %>
   <%= select_tag "user_selected", options_from_collection_for_select(@event.users_with_attachments.uniq, "id", "fullname"), :include_blank => 'All'
   %>
-  <%= submit_tag "Find media by uploader", class: "btn btn-primary" %>
+  <%= submit_tag "Go", class: "btn btn-filter" %>
 <% end %>
 
-<%if @event.attachments.any? %>
-  <% @attachments.each do |attachment| %>
-    <% attachment.posts.each do |post| %>
-      <%= link_to (cl_image_tag post.key, class:"img-event-gallery", crop: :fill), attachment_path(attachment)%>
-    <% end %>
-  <%end %>
-<% end %>
+<div class="attachment-container">
+  <%if @event.attachments.any? %>
+    <% @attachments.each do |attachment| %>
+    <div class="attachment-card">
+      <% attachment.posts.each do |post| %>
+        <%= link_to (cl_image_tag post.key, class:"img-event-gallery", crop: :fill), attachment_path(attachment)%>
+      <% end %>
+      <p><%= attachment.user.first_name %> <%= attachment.user.last_name %> | <%= attachment.likes.size %> Likes</p>
+    </div>
+    <%end %>
+  <% end %>
+</div>
 
 
 
@@ -51,5 +56,5 @@
 <%# end %>
 
 <% if policy(Attachment).new? %>
-  <%= link_to "Back", event_path(@event), class: "btn btn-secondary" %>
+  <%= link_to "Back", event_path(@event), class: "btn btn-back" %>
 <% end %>
