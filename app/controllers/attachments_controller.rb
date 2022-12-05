@@ -29,6 +29,8 @@ class AttachmentsController < ApplicationController
     @attachment = Attachment.new(attachment_params)
     @attachment.event = @event
     @attachment.user = current_user
+
+
     # @attachment.meta_creation = Exif::Data.new(File.open(params[:attachment][:posts][1].tempfile)).to_h.to_s
     # data = Exif::Data.new(File.open(params[:attachment][:posts][1].tempfile))
 

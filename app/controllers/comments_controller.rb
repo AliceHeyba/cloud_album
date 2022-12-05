@@ -7,12 +7,18 @@ class CommentsController < ApplicationController
       @comment.attachment = @attachment
       @comment.user = current_user
       authorize @comment
-      if @comment.save
-        redirect_to attachment_path(@attachment)
+      respond_to do |format|
+        if @comment.save
+          format.html { redirect_to attachment_path(@attachment) }
+          format.json
       else
-        render :new, status: :unprocessable_entity
+        format.html { render "attachmens/show", status: :unprocessable_entity }
+        format.json
+        end
       end
     end
+
+
 
     def edit
       @attachment = @comment.attachment
