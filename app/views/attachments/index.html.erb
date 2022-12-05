@@ -7,7 +7,8 @@
 
 
 <%= form_with url: event_attachments_path(@event), method: :get, class: "d-flex" do %>
-  <%= select_tag "user_selected", options_from_collection_for_select(@event.users_with_attachments.uniq, "id", "fullname"), :include_blank => 'All'
+  <%= select_tag "user_selected",
+  options_from_collection_for_select(@event.users_with_attachments.uniq, "id", "fullname"), :include_blank => "All"
   %>
   <%= submit_tag "Find media by uploader", class: "btn btn-primary" %>
 <% end %>
