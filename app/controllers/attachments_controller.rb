@@ -5,8 +5,9 @@ class AttachmentsController < ApplicationController
   def index
     @attachment = Attachment.new
     if params["user_selected"]
-      user = User.find(params["user_selected"])
-      @attachments = policy_scope(Attachment).where(event: @event, user: user)
+      @user = User.find(params["user_selected"])
+      @attachments = policy_scope(Attachment).where(event: @event, user: @user)
+    # raise
     else
       @attachments = policy_scope(Attachment).where(event: @event)
     end
@@ -27,13 +28,6 @@ class AttachmentsController < ApplicationController
     @attachment = Attachment.new(attachment_params)
     @attachment.event = @event
     @attachment.user = current_user
-
-    # if @attachment.meta_creation[created_at] != nil || false
-    #   @attachment.meta_create = meta_creation[DateCreated]
-    # else
-    #   @attachment.meta_create = Date.tomorrow
-    # end
-    # raise
 
     authorize @attachment
     if @attachment.save
