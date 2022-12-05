@@ -4,7 +4,6 @@ class AttachmentsController < ApplicationController
 
   def index
     @attachment = Attachment.new
-
     if params["user_selected"]&.empty?
       @attachments = policy_scope(Attachment).where(event: @event)
     elsif params["user_selected"]
