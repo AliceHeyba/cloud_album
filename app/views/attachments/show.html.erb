@@ -4,10 +4,10 @@
         <div class="post">
             <div class="info">
                 <div class="user">
-                    <div class="profile-pic"><img src="img/cover 1.png" alt=""></div>
-                    <h5 class="username"> Added by <%= current_user.email %></h5>
+                    <%# <div class="profile-pic"><img src="img/cover 1.png" alt=""></div> %>
+                    <h5 class="username"> Uploaded by <%= @attachment.user.first_name %>🕺🏻</h5>
                 </div>
-                <img src="img/option.PNG" class="options" alt="">
+                <%# <img src="img/option.PNG" class="options" alt=""> %>
             </div>
             <div class="attachment-post">
                 <% @attachment.posts.each do |post| %>
@@ -15,29 +15,45 @@
                 <% end %>
             </div>
             <div class="post-content">
-              <p class="likes"><%= @attachment.likes.size %> Likes</p>
-                <% like = current_user.likes.find_by(attachment: @attachment) %>
-                <% if like.nil? %>
-                  <%= link_to  attachment_likes_path(@attachment), data: {turbo_method: :post} do %>
-                    <i class="fa-regular fa-heart"></i>
+              <div class = "likes-icon d-flex justify-content-start" >
+                <p class="likes"><%= @attachment.likes.size %> Likes</p>
+                  <% like = current_user.likes.find_by(attachment: @attachment) %>
+                  <% if like.nil? %>
+                    <%= link_to  attachment_likes_path(@attachment), data: {turbo_method: :post}, class:"likes-icons" do %>
+                      <i class="fa-regular fa-heart"></i>
+                    <% end %>
+                  <% else %>
+                    <%= link_to like_path(like), data: {turbo_method: :delete}, class:"likes-icons" do %>
+                      <i class="fa-solid fa-heart"></i>
+                    <% end %>
                   <% end %>
-                <% else %>
-                  <%= link_to like_path(like), data: {turbo_method: :delete} do %>
-                    <i class="fa-solid fa-heart"></i>
-                  <% end %>
-                <% end  %>
+              </div>
+              <div class = "comments-text">
                 <p class="description"><span>username </span> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur?</p>
                 <p class="post-time">2 minutes ago</p>
                 <% @attachment.comments.each do |comment| %>
-                <div class= "comments-text">
-                  <p><%= comment.content %></p>
-                  <% end %>
-                </div>
-            </div>
-            <div class="comment-wrapper">
-            <form action="attachment_path(@attachment)" method="post">
-                <input type="text" class="comment-box" placeholder="Add a comment">
-                <button class="comment-btn">post</button>
+                  <div class="initials-and-comments d-flex justify-content-between">
+                    <div class="initials-comment">
+                      <p class="initials-circle"><em><%= comment.user.initials %></em></p>
+                    </div>
+                    <div class="comment-text flex-grow-1">
+                      <p><%= comment.content %></p>
+                    </div>
+                    <div class="edit-and-delete-icons">
+                      <%if policy(comment).edit? %>
+                        <%= link_to edit_attachment_comment_path(@attachment, comment) do %>
+                          <i class="fa-solid fa-pen-to-square"></i>
+                        <% end  %>
+                      <% end %>
+                      <% if policy(comment).destroy? %>
+                        <%= link_to comment_path(comment) , data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},class:"trash-comment-icon" do %>
+                          <i class="fa-solid fa-trash-can"></i>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
             </div>
         </div>
     </div>
@@ -45,44 +61,24 @@
 
 
 
-<% if policy(@comment).destroy? %>
-  <%= link_to "Delete this comment", comment_path(@comment) , data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
-  <i class="fa-solid fa-trash"></i>
-  <% end %>
-<% end %>
 
- <%# <div class="comment-wrapper">
-                    <img src="img/smile.PNG" class="icon" alt="">
-                    <input type="text" class="comment-box" placeholder="Add a comment">
-                    <button class="comment-btn">post</button>
-                </div> %>
-
-  <i class="fa-regular fa-comment-dots"data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
-  <!-- The form -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Add your comment</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <%= simple_form_for [ @attachment, @comment ] do |f| %>
-            <%= f.input :content %>
-            <%= f.submit class:"btn btn-success text-white mt-3" %>
-          <% end %>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
+<div data-controller="insert-in-comments-text">
+  <div data-insert-in-comments-text-target="comments">
+    <!-- [...] -->
   </div>
-</div>
-
-<% if policy(@attachment).destroy? %>
-  <%= link_to attachment_path(@attachment), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
-    <i class="fa-sharp fa-solid fa-trash"></i>
+  <% if policy(@comment).create? %>
+  <div class="comment-box">
+    <%= simple_form_for([@attachment, @comment],
+      data: {insert_in_comments_text_target: "form", action: "submit->insert-in-comments-text#send"}) do |f|%>
+      <div class="position-relative">
+        <%= f.text_area :content, placeholder: "Add a comment...", class: "comment-input" %>
+        <%= button_tag type: :submit, class: "comment-btn" do %>
+        <%#= f.submit "Post", class:"comment-btn" do %>
+            <i class="fa-regular fa-paper-plane"></i>
+          <% end %>
+        <!-- [...] -->
+      </div>
+    <% end %>
+  </div>
   <% end %>
-<% end %>
-<%= link_to "Back to event gallery", event_attachments_path(@event), class:"btn btn-secondary" %>
+</div>

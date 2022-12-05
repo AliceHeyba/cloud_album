@@ -9,3 +9,6 @@ application.register("flatpickr", FlatpickrController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import InsertInCommentsTextController from "./insert_in_comments_text_controller"
+application.register("insert-in-comments-text", InsertInCommentsTextController)

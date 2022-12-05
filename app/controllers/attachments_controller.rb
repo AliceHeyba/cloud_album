@@ -27,14 +27,6 @@ class AttachmentsController < ApplicationController
     @attachment = Attachment.new(attachment_params)
     @attachment.event = @event
     @attachment.user = current_user
-
-    # if @attachment.meta_creation[created_at] != nil || false
-    #   @attachment.meta_create = meta_creation[DateCreated]
-    # else
-    #   @attachment.meta_create = Date.tomorrow
-    # end
-    # raise
-
     authorize @attachment
     if @attachment.save
       redirect_to event_attachments_path(@event), notice: "Nice! Attachments uploaded succesfully."

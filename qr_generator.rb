@@ -1,7 +1,7 @@
 require 'rqrcode'
 
 
-qr_code = RQRCode::QRCode.new("https://cloudalbum.herokuapp.com/")
+qr_code = RQRCode::QRCode.new("https://cloudalbum.herokuapp.com/#{@event_number}")
 
 png = qr_code.as_png(
   color: "black",
