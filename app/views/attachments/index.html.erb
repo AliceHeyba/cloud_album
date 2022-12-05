@@ -1,29 +1,18 @@
 <p style="color: green"><%= notice %></p>
-<<<<<<< HEAD
 
 <div class="event-name">
 <h1><%=@event.event_name %> </h1>
 </div>
 
 
-=======
-<% if policy(Attachment).new? %>
-  <%= link_to "Back", event_path(@event), class: "btn btn-secondary" %>
-<% end %>
-<h1><%=@event.event_name %> </h1>
->>>>>>> 9be69b134bd119dc5f407289db217e9f7984b15b
 <%= form_with url: event_attachments_path(@event), method: :get, class: "d-flex" do %>
   <%= select_tag "user_selected", options_from_collection_for_select(@event.users_with_attachments.uniq, "id", "email")
     # params[:query]
   %>
   <%= submit_tag "Find media by uploader", class: "btn btn-primary" %>
 <% end %>
-<<<<<<< HEAD
 
 <%if @event.attachments.any? %>
-=======
-<% if @event.attachments.any? %>
->>>>>>> 9be69b134bd119dc5f407289db217e9f7984b15b
   <% @event.attachments.each do |attachment| %>
     <% attachment.posts.each do |post| %>
       <%= link_to (cl_image_tag post.key, class:"img-event-gallery", crop: :fill), attachment_path(attachment)%>
