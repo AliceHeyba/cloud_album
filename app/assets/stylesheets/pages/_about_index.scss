@@ -1,0 +1,125 @@
+.about-header {
+ display: flex;
+ justify-content: center;
+  }
+
+  .about-vision h3 {
+    color:#929998;
+  }
+
+  .about-mission h3 {
+    color:#929998;
+  }
+
+  .about-culture h3 {
+    color:#929998;
+  }
+
+
+  .about-vision{
+    display:flex;
+    width: 100%;
+    height: 200px;
+    margin-bottom: 20px;
+
+    .about-vision-text {
+      width:48%;
+      margin:auto;
+    }
+
+    .about-vision-image{
+      width:48%;
+    }
+    img {
+    width:100%;
+    height:100%;
+    object-fit: cover;
+    border-radius: 5px;
+
+    }
+  }
+
+  .about-mission{
+    display:flex;
+    width: 100%;
+    height: 200px;
+    margin-bottom: 20px;
+
+    .about-mission-text {
+      width:48%;
+      margin: auto;
+    }
+
+    .about-mission-image{
+      width:48%;
+
+    }
+    img {
+    width:100%;
+    height:100%;
+    object-fit: cover;
+    border-radius: 5px;
+
+
+    }
+  }
+
+  .about-culture{
+    display:flex;
+    width: 100%;
+    height: 200px;
+    .about-culture-text {
+      width:48%;
+      margin: auto;
+
+    }
+    .about-culture-image{
+      width:48%;
+    }
+    img {
+    width:100%;
+    height:100%;
+    object-fit: cover;
+    border-radius: 5px;
+    }
+  }
+
+
+
+
+  .meet-the-team h2 {
+    display: flex;
+    justify-content: center;
+    padding: 30px 0px 20px 0px;
+     }
+
+.meet-the-team img {
+  border-radius: 10px;
+  width: 100px;
+  height: 100px;
+}
+
+.bios h4 {
+  text-align: center;
+}
+
+.bios p {
+  padding-left: 10px;
+  font-size: small;
+  padding-top: -5 px;
+}
+
+.careers h3 {
+  display: flex;
+  justify-content: center;
+  padding: 30px 0px 20px 0px;
+   }
+
+.careers p {
+  font-size: small;
+}
+
+.careers a {
+  text-decoration: none;
+  color: black;
+}

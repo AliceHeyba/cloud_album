@@ -1,0 +1,22 @@
+<div class="container faq">
+  <div class="faq-header mt-4 mb-4 d-flex justify-content-between">
+    <h4>Frequently Asked Questions</h4>
+    <i class="fa-regular fa-comments"></i>
+  </div>
+  <div class="questions">
+    <h5>What is CloudAlbum?</h5>
+    <p>CloudAlbum is a web app that allows users to seamlessly gather pictures and videos taken during an event in 3 simple clicks! </p>
+
+    <h5>How can I create an event?</h5>
+    <div class="create-event-form-redirection">
+    <p> You can create an event by adding your event details through <%= link_to "this form", new_event_path, class:"redirection-link-event-creation" %></p>
+    </div>
+    <h5>Can anyone see my event created? </h5>
+    <p>Your event will only be accessible to your guests through a unique event number you can share with them</p>
+
+    <h5>Do I need to create an account to use CloudAlbum?</h5>
+    <p>You would only need to create an account to upload media to an event, otherwise you can freely browse pictures and videos on the app!</p>
+    <br>
+    <h6> <em>Still can't find what you're looking for? Drop us an <%= link_to "email", "mailto:Cloudalbum@thewagonlondon.com?subject=Enquiry&body=Hello%20need%20help%20please" %> and we'll aim to respond in 24 hours! </em></h6>
+  </div>
+</div>

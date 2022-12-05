@@ -1,19 +1,19 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  get "about", to: "about#index"
+  get "questions", to: "questions#index"
+  # get '/events/:event_number', to: 'events#show', as: 'event'
 
-  # Defines the root path route ("/")
-  # root "articles#index"
 
   resources :events do
     resources :attachments, only: [:new, :create, :index, :destroy]
   end
 
   resources :attachments, except: [:index, :new, :create] do
-    resources :comments, only: :create
+    resources :comments, only: [:create, :edit, :update]
     resources :likes, only: :create
   end
-  resources :comments, only: [:edit, :update, :destroy]
+  resources :comments, only: [:destroy]
   resources :likes, only: :destroy
 end

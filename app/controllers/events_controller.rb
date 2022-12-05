@@ -2,8 +2,7 @@ class EventsController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
 
   def index
-    @events = policy_scope(Event).all
-
+      @events = policy_scope(Event).all
   end
 
   def new
@@ -47,6 +46,7 @@ class EventsController < ApplicationController
 
   def set_event
     @event = Event.find(params[:id])
+    #@event = Event.find_by(event_number: params[:event_number])
     authorize @event
   end
 

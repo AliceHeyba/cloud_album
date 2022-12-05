@@ -8,14 +8,29 @@
   justify-content: space-between;
 }
 
+.event-banner {
+    width: 100%;
+    object-fit: cover;
+    object-position:center;
+  }
+
+.event-description {
+  padding-right: 25px;
+}
+
+.event-description-and-location {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-bottom: 40px;
+}
 
 .event-show-content h1 {
   color: black;
-  margin: 0px 0px 10px 30px;
+  margin: 5px 0px 10px 30px;
 }
 
-p {
-
+.event-location p {
   color: black;
   margin: 10px 0px 20px 30px;
 
@@ -26,6 +41,9 @@ p {
 }
 
 .edit-button {
+  i {
+    color: black;
+  }
   margin-top: 10px;
   display: flex;
   flex-direction: column;
