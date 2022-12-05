@@ -48,6 +48,7 @@
     .about-mission-text {
       width:48%;
       margin: auto;
+      text-align: right;
     }
 
     .about-mission-image{
@@ -84,9 +85,6 @@
     }
   }
 
-
-
-
   .meet-the-team h2 {
     display: flex;
     justify-content: center;
@@ -109,6 +107,10 @@
   padding-top: -5 px;
 }
 
+.careers {
+  text-align: center;
+}
+
 .careers h3 {
   display: flex;
   justify-content: center;
@@ -122,4 +124,8 @@
 .careers a {
   text-decoration: none;
   color: black;
+}
+
+a:hover {
+  color: rgba(106, 103, 103, 0.578);
 }
