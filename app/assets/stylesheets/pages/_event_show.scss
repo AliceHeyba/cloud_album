@@ -22,7 +22,6 @@
   display:flex;
   flex-direction: row;
   justify-content: space-around;
-  margin-bottom: 40px;
 }
 
 .event-show-content h2 {
@@ -40,7 +39,9 @@
 .event-location p {
   font-size: smaller;
   color: black;
-  margin: 10px 0px 20px 30px;
+  margin: 10px 10px 20px 30px;
+  text-transform: uppercase;
+  text-align: right;
 }
 
 .event-show-buttons {
