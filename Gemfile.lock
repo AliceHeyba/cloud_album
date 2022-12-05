@@ -120,6 +120,7 @@ GEM
       railties (>= 3.2)
     erubi (1.11.0)
     execjs (2.8.1)
+    exif (2.2.3)
     ffi (1.15.5)
     flatpickr (4.6.11.0)
     font-awesome-sass (6.2.1)
@@ -301,6 +302,7 @@ DEPENDENCIES
   debug
   devise
   dotenv-rails
+  exif
   flatpickr
   font-awesome-sass (~> 6.1)
   jbuilder
