@@ -7,7 +7,6 @@ class AttachmentsController < ApplicationController
     if params["user_selected"]
       @user = User.find(params["user_selected"])
       @attachments = policy_scope(Attachment).where(event: @event, user: @user)
-    # raise
     else
       @attachments = policy_scope(Attachment).where(event: @event)
     end
@@ -28,6 +27,8 @@ class AttachmentsController < ApplicationController
     @attachment = Attachment.new(attachment_params)
     @attachment.event = @event
     @attachment.user = current_user
+    # @attachment.meta_creation = Exif::Data.new(File.open(params[:attachment][:posts][1].tempfile)).to_h.to_s
+    # data = Exif::Data.new(File.open(params[:attachment][:posts][1].tempfile))
 
     authorize @attachment
     if @attachment.save
