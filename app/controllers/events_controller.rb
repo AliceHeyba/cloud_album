@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
+  # after_action :create_qr, only: :create
 
   def index
       @events = policy_scope(Event).all
@@ -12,6 +13,14 @@ class EventsController < ApplicationController
 
   def show
     @attachment = Attachment.new
+    @event = Event.find(params[:id])
+    @qr_code = RQRCode::QRCode.new("https://localhost:3000/events/#{@event.id}")
+    @svg = @qr_code.as_svg(
+      offset: 0,
+      color: '000',
+      shape_rendering: 'crispEdges',
+      standalone: true
+    )
   end
 
   def create
@@ -51,6 +60,6 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:event_date, :event_name, :event_description, :location, :banner)
+    params.require(:event).permit(:event_date, :event_name, :event_description, :location, :banner, :qr_code)
   end
 end

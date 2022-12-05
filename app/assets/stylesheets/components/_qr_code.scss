@@ -1,0 +1,16 @@
+.qr-code {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.qr-code-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 100px;
+  z-index: 1;
+  background-color: white;
+}
