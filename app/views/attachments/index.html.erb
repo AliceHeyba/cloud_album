@@ -2,7 +2,7 @@
 
 
 <div class="event-name">
-<h1><%=@event.event_name %> </h1>
+<h1 style="color: black"><%= link_to @event.event_name, event_path(@event) %> </h1>
 </div>
 
 
@@ -19,7 +19,7 @@
       <% attachment.posts.each do |post| %>
         <%= link_to (cl_image_tag post.key, class:"img-event-gallery", crop: :fill), attachment_path(attachment)%>
       <% end %>
-      <p><%= attachment.user.first_name %> <%= attachment.user.last_name %> | <%= attachment.likes.size %> Likes</p>
+      <p><strong><%= attachment.user.first_name %> <%= attachment.user.last_name %></strong> | <%= attachment.likes.size %> Likes</p>
     </div>
     <%end %>
   <% end %>
