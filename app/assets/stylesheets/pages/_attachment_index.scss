@@ -1,4 +1,4 @@
-h1 {
+.event-name h1 {
   color: black;
 }
 
@@ -22,4 +22,9 @@ h1 {
     background-color: #000;
     color:#FFF;
   }
+}
+
+.img-event-gallery {
+  width: 100%;
+  object-fit: cover;
 }

@@ -1,25 +1,29 @@
 <p style="color: green"><%= notice %></p>
-<% if policy(Attachment).new? %>
-  <%= link_to "Back", event_path(@event), class: "btn btn-secondary" %>
-<% end %>
 
+<div class="event-name">
 <h1><%=@event.event_name %> </h1>
+</div>
 
 
 <%= form_with url: event_attachments_path(@event), method: :get, class: "d-flex" do %>
   <%= select_tag "user_selected", options_from_collection_for_select(@event.users_with_attachments.uniq, "id", "email")
     # params[:query]
   %>
-  <%= submit_tag "Find media by creator", class: "btn btn-primary" %>
+  <%= submit_tag "Find media by uploader", class: "btn btn-primary" %>
 <% end %>
 
-<% if @event.attachments.any? %>
+<%if @event.attachments.any? %>
   <% @event.attachments.each do |attachment| %>
     <% attachment.posts.each do |post| %>
-      <%= link_to (cl_image_tag post.key, width: 400, height: 300, crop: :fill), attachment_path(attachment)%>
+      <%= link_to (cl_image_tag post.key, class:"img-event-gallery", crop: :fill), attachment_path(attachment)%>
     <% end %>
-  <% end %>
+  <%end %>
 <% end %>
+
+
+
+
+
 <%#= link_to  new_event_attachment_path(@event), class: "floating-btn" do %>
     <button type="button" class="floating-btn" data-bs-toggle ="modal" data-bs-target="#exampleModal"><span class="material-icons">add</span></button>
 
@@ -35,7 +39,7 @@
               <%= simple_form_for [@event, @attachment] do |f| %>
               <%= f.input :posts, as: :file, input_html: { multiple: true } %>
                <div class="text-center">
-                <%= f.submit class:"btn btn-success" %>
+                <%= f.submit class:"btn btn-success text-white" %>
               </div>
             <% end %>
           </div>
@@ -46,3 +50,7 @@
       </div>
     </div>
 <%# end %>
+
+<% if policy(Attachment).new? %>
+  <%= link_to "Back", event_path(@event), class: "btn btn-secondary" %>
+<% end %>

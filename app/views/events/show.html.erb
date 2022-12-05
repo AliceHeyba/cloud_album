@@ -1,14 +1,23 @@
 <div class="event-show-container">
     <div class="edit-button"><% if policy(@event).edit? %>
-        <%= link_to "Edit", edit_event_path(@event), class: "btn btn-edit" %>
+        <%= link_to edit_event_path(@event) do %>
+          <i class="fa-solid fa-pen-to-square"></i>
+         <% end %>
     <% end %>
     </div>
     <div class="event-show-content">
       <h1><%= @event.event_name %></h1>
         <% if @event.banner.present? %>
-          <%= cl_image_tag @event.banner.key, width: 400, height: 300, crop: :fill %>
+          <%= cl_image_tag @event.banner.key, crop: :fill, class:"event-banner" %>
         <%end%>
-      <p><%= @event.event_description %></p>
+      <div class="event-description-and-location">
+        <div class="event-description">
+        <p><%= @event.event_description %></p>
+        </div>
+        <div class = "event-location">
+        <p><i class="fa-solid fa-earth-americas"></i> <i class="fa-solid fa-location-dot"></i> <%= @event.location%></p>
+        </div>
+      </div>
       <div class="event-show-buttons d-grid gap-2">
       <%= link_to "View Gallery", event_attachments_path(@event), class: "btn btn-primary" %>
       <% if policy(Attachment).new? %>
@@ -27,7 +36,7 @@
                     <%= simple_form_for [@event, @attachment] do |f| %>
                     <%= f.input :posts, as: :file, input_html: { multiple: true } %>
                     <div class="text-center">
-                      <%= f.submit class:"btn btn-success text-white" %>
+                      <%= f.submit class:"btn btn-success upload-media-event-btn text-white" %>
                     </div>
                   <% end %>
                 </div>
