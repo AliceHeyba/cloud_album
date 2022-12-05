@@ -6,7 +6,7 @@
     <% end %>
     </div>
     <div class="event-show-content">
-      <h1><%= @event.event_name %></h1>
+      <h2><%= @event.event_name %></h2>
         <% if @event.banner.present? %>
           <%= cl_image_tag @event.banner.key, crop: :fill, class:"event-banner" %>
         <%end%>
@@ -15,7 +15,7 @@
         <p><%= @event.event_description %></p>
         </div>
         <div class = "event-location">
-        <p><i class="fa-solid fa-earth-americas"></i> <i class="fa-solid fa-location-dot"></i> <%= @event.location%></p>
+        <p><i class="fa-solid fa-location-dot"></i> <%= @event.location%></p>
         </div>
       </div>
       <div class="event-show-buttons d-grid gap-2">
