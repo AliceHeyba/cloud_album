@@ -2,18 +2,16 @@
 <h2 class="text-center">Attended Events</h2>
   <div class="index-container text-center">
     <div class="row">
-        <div class="events-index-container">
+        <div class="event-index-container">
           <% @events.each do |event| %>
             <%= link_to event_path(event), class: "text-decoration-none text-white" do %>
               <div class="card event-card text-white">
                 <% if event.banner.present? %>
-                  <%= cl_image_tag event.banner.key, width: 400, height: 300, crop: :fill, class: "card-img-top" %>
+                  <%= cl_image_tag event.banner.key, width: 400, crop: :fill, class: "card-img-top" %>
                 <% else %>
                 # put default image
                 <%end%>
-                <div class="container pt-2 pb-2">
-                  <p style="color: white; margin: 0;"> <%= event.event_name %> </p>
-                </div>
+
               </div>
             <% end %>
           <% end %>
