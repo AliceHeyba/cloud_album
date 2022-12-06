@@ -52,7 +52,7 @@ gem 'chunky_png'
 gem 'flatpickr'
 gem "pundit"
 gem "dotenv-rails", groups: [:development, :test]
-gem "cloudinary"
+gem "cloudinary", "~> 1.16"
 gem "devise"
 gem "exif"
 gem "autoprefixer-rails"
