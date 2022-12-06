@@ -16,12 +16,11 @@
 <%if @event.attachments.any? %>
   <% @attachments.each do |attachment| %>
     <% attachment.posts.each do |post| %>
-    <%= link_to (cl_video_tag post.key, class:"img-event-gallery"), attachment_path(attachment)%>
-    <%# ---------------------------- %>
-    <%# <%= link_to (cloudinary_url post.file.public_id, format: post.file.format, resource_type: post.file.resource_type), attachment_path(attachment)%>
-    <%# ------------------------------
-    original (works): %>
-      <%# <%= link_to (cl_image_tag post.key, class:"img-event-gallery", crop: :fill), attachment_path(attachment)%>
+    <% if post.content_type.include?("image") %>
+        <%= link_to (cl_image_tag post.key, class:"img-event-gallery", crop: :fill), attachment_path(attachment) %>
+      <% else %>
+        <%= link_to (cl_video_tag post.key, controls: true), attachment_path(attachment)%>
+      <% end %>
     <% end %>
   <%end %>
 <% end %>
