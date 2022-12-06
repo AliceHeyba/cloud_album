@@ -1,3 +1,5 @@
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/[email protected]/dist/js/bootstrap.bundle.min.js" integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd" crossorigin="anonymous"></script>
 
 <div class="wrapper">
     <div class="left-col">
@@ -31,27 +33,34 @@
               <div class = "comments-text">
                 <p class="description"><span>username </span> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur?</p>
                 <p class="post-time">2 minutes ago</p>
-                <% @attachment.comments.each do |comment| %>
-                  <div class="initials-and-comments d-flex justify-content-between">
-                    <div class="initials-comment">
-                      <p class="initials-circle"><em><%= comment.user.initials %></em></p>
-                    </div>
-                    <div class="comment-text flex-grow-1">
-                      <p><%= comment.content %></p>
-                    </div>
-                    <div class="edit-and-delete-icons">
-                      <%if policy(comment).edit? %>
-                        <%= link_to edit_attachment_comment_path(@attachment, comment) do %>
-                          <i class="fa-solid fa-pen-to-square"></i>
-                        <% end  %>
-                      <% end %>
-                      <% if policy(comment).destroy? %>
-                        <%= link_to comment_path(comment) , data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},class:"trash-comment-icon" do %>
-                          <i class="fa-solid fa-trash-can"></i>
+                <% if @attachment.comments.any? %>
+                  <% @attachment.comments.each do |comment| %>
+                    <div class="initials-and-comments d-flex justify-content-between">
+                      <div class="initials-comment">
+                      <p class="initials-circle" data-toggle="popover" data-trigger="focus" title="<%= comment.user.fullname %>"><em><%= comment.user.initials %></em></p>
+                      <script>
+                        $(document).ready(function() {
+                          $('[data-toggle="popover"]').popover();
+                        });
+                      </script>
+                      </div>
+                      <div class="comment-text flex-grow-1">
+                        <p><%= comment.content %></p>
+                      </div>
+                      <div class="edit-and-delete-icons">
+                        <%if policy(comment).edit? %>
+                          <%= link_to edit_attachment_comment_path(@attachment, comment) do %>
+                            <i class="fa-solid fa-pen-to-square"></i>
+                          <% end  %>
                         <% end %>
-                      <% end %>
+                        <% if policy(comment).destroy? %>
+                          <%= link_to comment_path(comment) , data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},class:"trash-comment-icon" do %>
+                            <i class="fa-solid fa-trash-can"></i>
+                          <% end %>
+                        <% end %>
+                      </div>
                     </div>
-                  </div>
+                  <% end %>
                 <% end %>
               </div>
             </div>
