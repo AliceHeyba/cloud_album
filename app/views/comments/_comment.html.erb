@@ -1,6 +1,10 @@
 <div class="initials-and-comments d-flex justify-content-between">
   <div class="initials-comment">
-  <p class="initials-circle" data-toggle="popover" data-trigger="focus" title="<%= comment.user.fullname %>"><em><%= comment.user.initials %></em></p>
+  <% if comment.user.avatar.key? %>
+    <p class="initials-circle" data-toggle="popover" data-trigger="focus" title="<%= comment.user.fullname %>"><%= cl_image_tag comment.user.avatar.key %></p>
+  <% else %>
+    <p class="initials-circle" data-toggle="popover" data-trigger="focus" title="<%= comment.user.fullname %>"><em><%= comment.user.initials %></em></p>
+  <% end %>
   <script>
     $(document).ready(function() {
       $('[data-toggle="popover"]').popover();

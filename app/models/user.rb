@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :likes
   has_many :comments, through: :attachments
   has_many :guests
+  has_one_attached :avatar
   validates :first_name, :last_name, presence: true
 
   # Include default devise modules. Others available are:

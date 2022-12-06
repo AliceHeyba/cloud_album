@@ -1,5 +1,14 @@
-<%= form_with url: find_event_path, method: :get do |form| %>
-  <%= form.label :event_number %>
-  <%= form.text_field :event_number %>
-  <%= form.submit "Search" %>
-<% end %>
+<div class="container bg-white justify-content-center pt-5 pb-3">
+  <div class="row">
+    <div class="col">
+      <%= form_with url: find_event_path, method: :get do |form| %>
+        <div class="find-form">
+          <%= form.text_field :event_number, label: false, placeholder: "Event number", class: "event-text-box" %>
+        </div>
+        <div class="home-CTA-buttons d-grid pt-4 gap-2">
+          <%= form.submit "Search", class:"btn btn-secondary" %>
+        </div>
+      <% end %>
+   </div>
+  </div>
+</div>
