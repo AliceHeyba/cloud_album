@@ -43,6 +43,7 @@
           <div class="modal-body">
               <%= simple_form_for [@event, @attachment] do |f| %>
               <%= f.input :posts, as: :file, input_html: { multiple: true } %>
+              <%= f.input :caption, placeholder:"Optional" %>
                <div class="text-center">
                 <%= f.submit class:"btn btn-secondary" %>
               </div>
