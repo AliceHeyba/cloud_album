@@ -1,3 +1,18 @@
 .delete-button {
   margin-left: 94%;
 }
+
+.find-form {
+  display: flex;
+  justify-content: space-around;
+}
+
+.find-form {
+::placeholder {
+  text-align: center;
+}
+}
+
+.event-text-box {
+  border-radius: 15px;
+}

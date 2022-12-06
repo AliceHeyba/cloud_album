@@ -1,11 +1,5 @@
 
-<div class="event-show-container">
-    <div class="edit-button"><% if policy(@event).edit? %>
-        <%= link_to edit_event_path(@event) do %>
-          <i class="fa-solid fa-pen-to-square"></i>
-         <% end %>
-    <% end %>
-    </div>
+<div class="event-show-container" data-controller="qrcode">
     <div class="event-show-content">
       <h2><%= @event.event_name %></h2>
         <% if @event.banner.present? %>
@@ -42,13 +36,14 @@
               <div class="modal-body">
                   <%= simple_form_for [@event, @attachment] do |f| %>
                   <%= f.input :posts, as: :file, input_html: { multiple: true } %>
+                  <%= f.input :caption, placeholder:"Optional" %>
                   <div class="text-center">
-                    <%= f.submit class:"btn btn-success upload-media-event-btn text-white" %>
-                  </div>
+                <%= f.submit class:"btn btn-secondary" %>
+              </div>
                 <% end %>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss ="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss ="modal">Close</button>
               </div>
             </div>
           </div>
