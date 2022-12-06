@@ -19,7 +19,7 @@
     <% if post.content_type.include?("image") %>
         <%= link_to (cl_image_tag post.key, class:"img-event-gallery", crop: :fill), attachment_path(attachment) %>
       <% else %>
-        <%= link_to (cl_video_tag post.key, controls: true), attachment_path(attachment)%>
+        <%= link_to (cl_video_tag post.key, controls: true, crop: :fill), attachment_path(attachment)%>
       <% end %>
     <% end %>
   <%end %>

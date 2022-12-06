@@ -1,7 +1,7 @@
 <%# <div class="qr-code">
     <%= @svg.html_safe %>
     <%# <%= image_tag "cloud-blank-01.png", class: "qr-code-logo" %>
-<%# </div> %> 
+<%# </div> %>
 <div class="event-show-container">
     <div class="edit-button"><% if policy(@event).edit? %>
         <%= link_to edit_event_path(@event) do %>
@@ -12,7 +12,11 @@
     <div class="event-show-content">
       <h2><%= @event.event_name %></h2>
         <% if @event.banner.present? %>
-          <%= cl_image_tag @event.banner.key, crop: :fill, class:"event-banner" %>
+          <% if @event.banner.content_type.include?("image") %>
+            <%= link_to (cl_image_tag @event.banner.key, class:"event-banner", crop: :fill) %>
+          <% else %>
+            <%= link_to (cl_video_tag @event.banner.key, class:"event-banner", crop: :fill) %>
+          <% end %>
         <%end%>
       <div class="event-description-and-location">
         <div class="event-description">
