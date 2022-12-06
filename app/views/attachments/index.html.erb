@@ -2,7 +2,7 @@
 
 
 <div class="event-name">
-<h1><%=@event.event_name %> </h1>
+<h1 style="color: black"><%= link_to @event.event_name, event_path(@event) %> </h1>
 </div>
 
 
@@ -10,7 +10,7 @@
   <%= select_tag "user_selected",
   options_from_collection_for_select(@event.users_with_attachments.uniq, "id", "fullname"), :include_blank => "All"
   %>
-  <%= submit_tag "Find media by uploader", class: "btn btn-primary" %>
+  <%= submit_tag "Go", class: "btn btn-filter" %>
 <% end %>
 
 <%if @event.attachments.any? %>
@@ -24,9 +24,6 @@
     <% end %>
   <%end %>
 <% end %>
-
-
-
 
 
 <%#= link_to  new_event_attachment_path(@event), class: "floating-btn" do %>
@@ -43,12 +40,12 @@
               <%= simple_form_for [@event, @attachment] do |f| %>
               <%= f.input :posts, as: :file, input_html: { multiple: true } %>
                <div class="text-center">
-                <%= f.submit class:"btn btn-success text-white" %>
+                <%= f.submit class:"btn btn-secondary" %>
               </div>
             <% end %>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss ="modal">Close</button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss ="modal">Close</button>
           </div>
         </div>
       </div>
@@ -56,5 +53,5 @@
 <%# end %>
 
 <% if policy(Attachment).new? %>
-  <%= link_to "Back", event_path(@event), class: "btn btn-secondary" %>
+  <%= link_to "Back", event_path(@event), class: "btn btn-back" %>
 <% end %>

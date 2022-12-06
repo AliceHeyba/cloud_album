@@ -9,10 +9,10 @@
 }
 
 .event-banner {
-    width: 100%;
-    object-fit: cover;
-    object-position:center;
-  }
+  width: 100%;
+  object-fit: cover;
+  object-position:center;
+}
 
 .event-description {
   padding-right: 25px;
@@ -58,4 +58,16 @@
   flex-direction: column;
   flex-flow: row-reverse wrap;
   justify-content: flex-start !important;
+}
+
+.hidden{
+  display: none;
+}
+
+.w-100{
+  width: 100%;
+}
+
+.mb-10{
+  margin-bottom: 10px;
 }
