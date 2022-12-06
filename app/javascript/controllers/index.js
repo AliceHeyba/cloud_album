@@ -12,3 +12,6 @@ application.register("hello", HelloController)
 
 import InsertInCommentsTextController from "./insert_in_comments_text_controller"
 application.register("insert-in-comments-text", InsertInCommentsTextController)
+
+import QrcodeController from "./qrcode_controller"
+application.register("qrcode", QrcodeController)
