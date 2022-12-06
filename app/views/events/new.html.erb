@@ -9,8 +9,8 @@
           <%= f.input :location, label: false, placeholder: "Location" %>
           <%= f.input :banner, as: :file %>
           <%= f.association :guests, collection: User.all, input_html: { multiple: true }, label_method: lambda { |user| "#{user.first_name} #{user.last_name}" }, label_value: :id %>
-          <div class="text-center">
-            <%= f.submit class:"btn btn-success btn-booking-event text-white mt-3" %>
+          <div class="home-CTA-buttons d-grid gap-2">
+            <%= f.submit class:"btn btn-secondary" %>
           </div>
         <% end %>
       <% else %>

@@ -19,7 +19,8 @@
   color: white;
   border-radius: 25px !important;
   margin: 0px 30px 0px 30px;
-  font-weight: 500;
+  // font-weight: 500;
+  font-weight: bold;
   font-size: small;
   text-transform: uppercase;
   height: 40px;
@@ -53,4 +54,8 @@
   font-weight: 500;
   text-transform: uppercase;
   font-size: smaller;
+}
+
+.btn-trash {
+
 }
