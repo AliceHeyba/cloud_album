@@ -72,6 +72,7 @@
   width: 100%;
   padding-right: 52px;
   border: 1px solid #ccc;
+  border-radius: 8px;
 }
 
 .trash-comment-icon {
@@ -160,4 +161,8 @@
 
 .popover-body {
   color: rgb(119, 119, 119);
+}
+
+.position-relative {
+  margin: 0px 10px 0px 10px;
 }
