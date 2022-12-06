@@ -1,5 +1,8 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
+  # include Pundit
+  # before_action :authorize, only: :find_event
+
   # after_action :create_qr, only: :create
 
   def index
@@ -22,6 +25,17 @@ class EventsController < ApplicationController
       standalone: true
     )
   end
+
+  #def find_event
+  #   @event = Event.find_by(event_number: params[:event_number])
+  #   if @event
+  #     redirect_to event_path(@event)
+  #   else
+  #    render :new, status: :unprocessable_entity
+  #   end
+  # end
+
+
 
   def create
     @event = Event.new(event_params)
@@ -54,8 +68,7 @@ class EventsController < ApplicationController
   private
 
   def set_event
-    @event = Event.find(params[:id])
-    #@event = Event.find_by(event_number: params[:event_number])
+    @event = (Event.find(params[:id])) #||(Event.find(params[:event_number]))
     authorize @event
   end
 
