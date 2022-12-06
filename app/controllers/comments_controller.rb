@@ -11,9 +11,9 @@ class CommentsController < ApplicationController
         if @comment.save
           format.html { redirect_to attachment_path(@attachment) }
           format.json
-      else
-        format.html { render "attachmens/show", status: :unprocessable_entity }
-        format.json
+        else
+          format.html { render "attachmens/show", status: :unprocessable_entity }
+          format.json
         end
       end
     end
