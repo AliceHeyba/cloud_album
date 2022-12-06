@@ -17,7 +17,7 @@ class EventPolicy < ApplicationPolicy
     return create?
   end
 
-  def find?
+  def find_event?
     return true
   end
 
