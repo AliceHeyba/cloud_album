@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_many :attachments
-  has_many :likes, through: :attachments
+  has_many :likes
   has_many :comments, through: :attachments
   has_many :guests
   validates :first_name, :last_name, presence: true
@@ -17,7 +17,7 @@ class User < ApplicationRecord
   end
 
 
-  
+
   def fullname
     return "#{first_name} #{last_name}"
   end

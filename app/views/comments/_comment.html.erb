@@ -1,0 +1,25 @@
+<div class="initials-and-comments d-flex justify-content-between">
+  <div class="initials-comment">
+  <p class="initials-circle" data-toggle="popover" data-trigger="focus" title="<%= comment.user.fullname %>"><em><%= comment.user.initials %></em></p>
+  <script>
+    $(document).ready(function() {
+      $('[data-toggle="popover"]').popover();
+    });
+  </script>
+  </div>
+  <div class="comment-text flex-grow-1">
+    <p><%= comment.content %></p>
+  </div>
+  <div class="edit-and-delete-icons">
+    <%if policy(comment).edit? %>
+      <%= link_to edit_attachment_comment_path(attachment, comment) do %>
+        <i class="fa-solid fa-pen-to-square"></i>
+      <% end  %>
+    <% end %>
+    <% if policy(comment).destroy? %>
+      <%= link_to comment_path(comment) , data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},class:"trash-comment-icon" do %>
+        <i class="fa-solid fa-trash-can"></i>
+      <% end %>
+    <% end %>
+  </div>
+</div>
