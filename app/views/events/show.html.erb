@@ -1,11 +1,5 @@
 
 <div class="event-show-container">
-    <div class="edit-button"><% if policy(@event).edit? %>
-        <%= link_to edit_event_path(@event) do %>
-          <i class="fa-solid fa-pen-to-square"></i>
-         <% end %>
-    <% end %>
-    </div>
     <div class="event-show-content">
       <h2><%= @event.event_name %></h2>
         <% if @event.banner.present? %>
