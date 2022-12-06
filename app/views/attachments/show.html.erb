@@ -58,7 +58,7 @@
 
               </div>
               <div class = "comments-text" data-insert-in-comments-text-target="comments">
-                <p class="description"><span>username </span> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur?</p>
+                <p class="description"><span><%= @attachment.user.first_name %> <%= @attachment.user.last_name %></span> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur?</p>
                 <p class="post-time">2 minutes ago</p>
                 <% if @attachment.comments.any? %>
                   <% @attachment.comments.each do |comment| %>
