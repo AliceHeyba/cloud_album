@@ -33,6 +33,9 @@
                   placeholder: "Confirm password",
                   required: true,
                   input_html: { autocomplete: "new-password" } %>
+      <%= f.input :avatar,
+                  as: :file,
+                  hint: 'optional' %>
     </div>
 
     <div class="home-CTA-buttons d-grid gap-2">
