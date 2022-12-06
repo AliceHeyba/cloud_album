@@ -26,14 +26,17 @@ class EventsController < ApplicationController
     )
   end
 
-  #def find_event
-  #   @event = Event.find_by(event_number: params[:event_number])
-  #   if @event
-  #     redirect_to event_path(@event)
-  #   else
-  #    render :new, status: :unprocessable_entity
-  #   end
-  # end
+  def find_event
+    @event = Event.find_by(event_number: params[:event_number])
+    if @event
+      authorize @event
+      redirect_to event_path(@event)
+    else
+      @event = Event.new
+      authorize @event
+      render "pages/find", status: :unprocessable_entity, notice: "Your event could not be found"
+    end
+  end
 
 
 
