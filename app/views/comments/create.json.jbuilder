@@ -1,6 +1,6 @@
 if @comment.persisted?
   json.form render(partial: "comments/form", formats: :html, locals: {attachment: @attachment, comment: Comment.new})
-  json.inserted_item render(partial: "attachments/review", formats: :html, locals: {comment: @comment})
+  json.inserted_item render(partial: "comments/comment", formats: :html, locals: {attachment: @attachment, comment: @comment})
 else
-  json.form render(partial: "comments/form", formats: :html, locals: {attachment: @attachment, comment: @review})
+  json.form render(partial: "comments/form", formats: :html, locals: {attachment: @attachment, comment: @comment})
 end
