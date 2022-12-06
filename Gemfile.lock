@@ -298,7 +298,7 @@ DEPENDENCIES
   bootsnap
   capybara
   chunky_png
-  cloudinary (~> 1.16)
+  cloudinary
   debug
   devise
   dotenv-rails
