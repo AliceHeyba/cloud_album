@@ -13,21 +13,17 @@
   <%= submit_tag "Go", class: "btn btn-filter" %>
 <% end %>
 
-<div class="attachment-container">
-  <%if @event.attachments.any? %>
-    <% @attachments.each do |attachment| %>
-    <div class="attachment-card">
-      <% attachment.posts.each do |post| %>
-        <%= link_to (cl_image_tag post.key, class:"img-event-gallery", crop: :fill), attachment_path(attachment)%>
+<%if @event.attachments.any? %>
+  <% @attachments.each do |attachment| %>
+    <% attachment.posts.each do |post| %>
+    <% if post.content_type.include?("image") %>
+        <%= link_to (cl_image_tag post.key, class:"img-event-gallery", crop: :fill), attachment_path(attachment) %>
+      <% else %>
+        <%= link_to (cl_video_tag post.key, controls: true, crop: :fill), attachment_path(attachment)%>
       <% end %>
-      <p><strong><%= attachment.user.first_name %> <%= attachment.user.last_name %></strong> | <%= attachment.likes.size %> Likes</p>
-    </div>
-    <%end %>
-  <% end %>
-</div>
-
-
-
+    <% end %>
+  <%end %>
+<% end %>
 
 
 <%#= link_to  new_event_attachment_path(@event), class: "floating-btn" do %>
