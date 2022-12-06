@@ -26,6 +26,9 @@
           <li class="nav-item">
             <%= link_to "My Events", events_path, class: "btn nav-link" %>
           </li>
+          <li class="nav-item">
+            <%= link_to "Create an Event", new_event_path, class: "btn nav-link" %>
+          </li>
         <%end%>
         <% if user_signed_in? == false %>
           <li class="nav-item">
