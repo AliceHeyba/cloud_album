@@ -2,7 +2,7 @@ class AttachmentsController < ApplicationController
   before_action :set_event, only: [:new, :create, :index]
   before_action :set_attachment, only: %i[show edit update destroy]
 
-   def index
+  def index
     @attachment = Attachment.new
     if params["user_selected"]&.empty?
       @attachments = policy_scope(Attachment).where(event: @event)
