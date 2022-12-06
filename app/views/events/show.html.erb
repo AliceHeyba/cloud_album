@@ -1,13 +1,19 @@
-<div class="event-show-container">
-  <div class="qr-code d-none">
+<div class="event-show-container" data-controller="qrcode">
+  <div class="event-admin-buttons">
+    <div class="edit-button"><% if policy(@event).edit? %>
+      <%= link_to edit_event_path(@event) do %>
+        <span class="material-symbols-outlined">edit_square</span>
+      <% end %>
+      <% end %>
+    </div>
+    <div class="qr-button">
+      <button class="qr-toggle" data-action="click->qrcode#toggle"><span class="material-symbols-outlined">
+      qr_code_2</span>
+      </button>
+    </div>
+    <div class="qr-code d-none" data-qrcode-target="qr">
     <%= @svg.html_safe %>
-  </div>
-  <button class="qr-toggle">QR Code</button>
-  <div class="edit-button"><% if policy(@event).edit? %>
-    <%= link_to edit_event_path(@event) do %>
-      <i class="fa-solid fa-pen-to-square"></i>
-    <% end %>
-    <% end %>
+    </div>
   </div>
   <div class="event-show-content">
     <h2><%= @event.event_name %></h2>
