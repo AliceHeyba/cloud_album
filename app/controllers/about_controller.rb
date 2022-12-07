@@ -1,4 +1,5 @@
 class AboutController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index]
   after_action :skip_all_authorization
   def index
 
