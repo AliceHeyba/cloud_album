@@ -28,7 +28,6 @@
                 <% else %>
                   <%= link_to (cl_video_tag post.key, controls: true, class:"img-event-gallery d-block w-100", crop: :fill), attachment_path(attachment) %>
                 <% end %>
-                 <p><strong><%= attachment.user.fullname %></strong> | <%= attachment.likes.size %> Likes</p>
               </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -39,6 +38,7 @@
                 <span class="visually-hidden">Next</span>
                 </button>
               <% end %>
+                 <p><strong><%= attachment.user.fullname %></strong> | <%= attachment.likes.size %> Likes</p>
           </div>
         </div>
       <% else %>
@@ -48,9 +48,9 @@
           <% else %>
               <%= link_to (cl_video_tag attachment.posts[0].key, class:"img-event-gallery", controls: true, crop: :fill), attachment_path(attachment)%>
           <% end %>
-              <p><strong><%= attachment.user.fullname %></strong> | <%= attachment.likes.size %> Likes</p>
             </div>
       <%end %>
+      <p><strong><%= attachment.user.fullname %></strong> | <%= attachment.likes.size %> Likes</p>
     <% end %>
   <% end %>
 </div>
