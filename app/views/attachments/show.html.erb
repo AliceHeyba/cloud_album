@@ -77,7 +77,7 @@
                   <% end %>
                 </div>
                 <% if policy(@attachment).destroy? %>
-                  <%= link_to  event_attachments_path(@attachment.event) , data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},class:"trash-comment-icon" do %>
+                  <%= link_to  event_attachment_path(@attachment.event, @attachment) , data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},class:"trash-comment-icon" do %>
                     <i class="fa-solid fa-trash-can"></i>
                   <% end %>
                 <% end %>
