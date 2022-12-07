@@ -4,9 +4,9 @@
       <h2><%= @event.event_name %></h2>
         <% if @event.banner.present? %>
           <% if @event.banner.content_type.include?("image") %>
-            <%= link_to (cl_image_tag @event.banner.key, class:"event-banner", crop: :fill) %>
+            <%= link_to (cl_image_tag @event.banner.key, class:"event-banner", crop: :fill), event_attachments_path(@event) %>
           <% else %>
-            <%= link_to (cl_video_tag @event.banner.key, class:"event-banner", crop: :fill) %>
+            <%= link_to (cl_video_tag @event.banner.key, class:"event-banner", crop: :fill),event_attachments_path(@event) %>
           <% end %>
         <%end%>
       <div class="event-description-and-location">
