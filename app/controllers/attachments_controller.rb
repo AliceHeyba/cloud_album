@@ -12,6 +12,9 @@ class AttachmentsController < ApplicationController
     else
       @attachments = policy_scope(Attachment).where(event: @event)
     end
+    # @posts_count = []
+    # @attachments.each { |att| @posts_count << att if att.posts.count > 1}
+    # return @posts_count
   end
 
   def new
