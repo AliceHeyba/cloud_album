@@ -12,16 +12,40 @@
                 <%# <img src="img/option.PNG" class="options" alt=""> %>
             </div>
             <div class="attachment-post">
-                <% @attachment.posts.each do |post| %>
-                  <% if post.content_type.include?("image") %>
-                    <%= link_to (cl_image_tag post.key, class:"img-event-gallery", crop: :fill), attachment_path(@attachment) %>
+              <% if @attachment.posts.attached? %>
+                <% if @attachment.posts.length > 1 %>
+                  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                      <% @attachment.posts.each_with_index do |post, index| %>
+                        <div class="carousel-item <%= index.zero? ? "active" : nil %>">
+                          <% if post.content_type.include?("image") %>
+                            <%= cl_image_tag post.key, class:"img-event-gallery d-block w-100", crop: :fill %>
+                          <% else %>
+                            <%= cl_video_tag post.key, controls: true, class:"img-event-gallery d-block w-100", crop: :fill %>
+                          <% end %>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                        </button>
+                      <% end %>
+                    </div>
+                  </div>
+                <% else %>
+                  <% if @attachment.posts[0].content_type.include?("image") %>
+                    <%= cl_image_tag @attachment.posts[0].key, class:"img-event-gallery", crop: :fill %>
                   <% else %>
-                    <%= link_to (cl_video_tag post.key, controls: true, crop: :fill, class:"unique-post"), attachment_path(@attachment)%>
+                    <%= cl_video_tag @attachment.posts[0].key, controls: true, crop: :fill %>
                   <% end %>
-                  <%# <%= cl_image_tag post.key, crop: :fill, class:"unique-post" %>
                 <% end %>
+              <% else %>
+                <h3>Upload your images by clicking on the plus sign</h3>
+              <% end %>
             </div>
-
             <%# compter tous les likes pour cette attachment %>
             <%# Like.where(attachment_id: @attachment.id).count %>
             <%# show red heart if user already liked attachment %>
@@ -29,34 +53,41 @@
             <%# check if current user %>
             <%#  %>
             <div class="post-content">
-              <div class = "likes-icon d-flex justify-content-start" >
-                <p class="likes"><%= @attachment.likes.size %> Likes</p>
-                  <% like = current_user.likes.find_by(attachment: @attachment) %>
-                <% if current_user %>
-                  <% if like.nil? %>
-                    <%= link_to  attachment_likes_path(@attachment), data: {turbo_method: :post}, class:"likes-icons" do %>
-                      <i class="fa-regular fa-heart"></i>
+              <div class="like-and-delete d-flex justify-content-between">
+                <div class = "likes-icon d-flex justify-content-start" >
+                  <p class="likes"><%= @attachment.likes.size %> Likes</p>
+                    <% like = current_user.likes.find_by(attachment: @attachment) %>
+                  <% if current_user %>
+                    <% if like.nil? %>
+                      <%= link_to  attachment_likes_path(@attachment), data: {turbo_method: :post}, class:"likes-icons" do %>
+                        <i class="fa-regular fa-heart"></i>
+                      <% end %>
+                    <% else %>
+
+                      <%= link_to like_path(like), data: {turbo_method: :delete}, class:"likes-icons" do %>
+                        <i class="fa-solid fa-heart"></i>
+                      <% end %>
                     <% end %>
                   <% else %>
-
-                    <%= link_to like_path(like), data: {turbo_method: :delete}, class:"likes-icons" do %>
-                      <i class="fa-solid fa-heart"></i>
-                    <% end %>
+                    <%# signup %>
+                      <%= link_to attachment_likes_path(@attachment), data: {turbo_method: :post},
+                        class:"likes-icons" do %>
+                        <i class="fa-regular fa-heart"></i>
+                      <% end %>
                   <% end %>
-                <% else %>
-                  <%# signup %>
-                    <%= link_to attachment_likes_path(@attachment), data: {turbo_method: :post},
-                      class:"likes-icons" do %>
-                      <i class="fa-regular fa-heart"></i>
-                    <% end %>
+                </div>
+                <% if policy(@attachment).destroy? %>
+                  <%= link_to  event_attachments_path(@attachment.event) , data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},class:"trash-comment-icon" do %>
+                    <i class="fa-solid fa-trash-can"></i>
+                  <% end %>
                 <% end %>
-
+              </div>
 
 
               </div>
               <div class = "comments-text" data-insert-in-comments-text-target="comments">
-                <p class="description"><span><%= @attachment.user.fullname%></span> <%= @attachment.caption%></p>
-                <p class="post-time"><%= @attachment.created_at %></p>
+                <p class="description"><span><strong><%= @attachment.user.fullname%></strong></span> <%= @attachment.caption%></p>
+                <p class="post-time"><%= @attachment.created_at.strftime("%d %b %I:%M %p %Y") %></p>
                 <% if @attachment.comments.any? %>
                   <% @attachment.comments.each do |comment| %>
 
