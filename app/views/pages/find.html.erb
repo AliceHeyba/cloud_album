@@ -1,6 +1,10 @@
 <div class="container bg-white justify-content-center pt-5 pb-3">
   <div class="row">
     <div class="col">
+      <div class="find-copy">
+        <p>If you have an event number, please enter it below.</p>
+        <p>Alternatively, if you can see a QR code for your event, scan it using your phone camera.</p>
+      </div>
       <%= form_with url: find_event_path, method: :get do |form| %>
         <div class="find-form">
           <%= form.text_field :event_number, label: false, placeholder: "Event number", class: "event-text-box" %>
