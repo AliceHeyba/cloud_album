@@ -4,97 +4,34 @@
   }
 
   .about-vision h3 {
-    color:#929998;
+    color: #000;
   }
 
   .about-mission h3 {
-    color:#929998;
+    color: #000;
   }
 
   .about-culture h3 {
-    color:#929998;
+    color: #000;
   }
 
-
-  .about-vision{
-    display:flex;
-    width: 100%;
-    height: 200px;
-    margin-bottom: 20px;
-
-    .about-vision-text {
-      width:48%;
-      margin:auto;
-    }
-
-    .about-vision-image{
-      width:48%;
-    }
-    img {
-    width:100%;
-    height:100%;
-    object-fit: cover;
-    border-radius: 5px;
-
-    }
-  }
-
-  .about-mission{
-    display:flex;
-    width: 100%;
-    height: 200px;
-    margin-bottom: 20px;
-
-    .about-mission-text {
-      width:48%;
-      margin: auto;
-      text-align: right;
-    }
-
-    .about-mission-image{
-      width:48%;
-
-    }
-    img {
-    width:100%;
-    height:100%;
-    object-fit: cover;
-    border-radius: 5px;
-
-
-    }
-  }
-
-  .about-culture{
-    display:flex;
-    width: 100%;
-    height: 200px;
-    .about-culture-text {
-      width:48%;
-      margin: auto;
-
-    }
-    .about-culture-image{
-      width:48%;
-    }
-    img {
-    width:100%;
-    height:100%;
-    object-fit: cover;
-    border-radius: 5px;
-    }
+  .meet-the-team h5 {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
   }
 
   .meet-the-team h2 {
     display: flex;
     justify-content: center;
-    padding: 30px 0px 20px 0px;
-     }
+  }
 
 .meet-the-team img {
   border-radius: 50%;
   width: 100px;
   height: 100px;
+  vertical-align: middle;
+  margin-top: 20px;
 }
 
 .bios h4 {
@@ -102,10 +39,10 @@
 }
 
 .bios p {
-  padding-left: 10px;
+  padding-left: 15px;
   font-size: small;
   padding-top: -5 px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .careers {
