@@ -1,6 +1,3 @@
-<p style="color: green"><%= notice %></p>
-
-
 <div class="event-name">
 <h1 style="color: black"><%= link_to @event.event_name, event_path(@event) %> </h1>
 </div>
@@ -14,8 +11,8 @@
 <% end %>
 
 <div class="attachment-container">
-  <%if @event.attachments.any? %>
-    <% @event.attachments.each do |attachment| %>
+  <%if @attachments.any? %>
+    <% @attachments.each do |attachment| %>
       <% if attachment.posts[0].content_type.include?("image") %>
       <div class="attachment-card">
           <%= link_to (cl_image_tag attachment.posts[0].key, class:"img-event-gallery", crop: :fill), attachment_path(attachment) %>
