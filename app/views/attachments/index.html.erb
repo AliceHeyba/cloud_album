@@ -42,8 +42,8 @@
                 <span class="visually-hidden">Next</span>
                 </button>
               <% end %>
-                 <p><strong><%= attachment.user.fullname %></strong> | <%= attachment.likes.size %> Likes</p>
           </div>
+          <p><strong><%= attachment.user.fullname %></strong> | <%= attachment.likes.size %> Likes</p>
         </div>
       <% else %>
           <% if attachment.posts[0].content_type.include?("image") %>
@@ -52,9 +52,9 @@
           <% else %>
               <%= link_to (cl_video_tag attachment.posts[0].key, class:"img-event-gallery", controls: true, crop: :fill), attachment_path(attachment)%>
           <% end %>
+          <p><strong><%= attachment.user.fullname %></strong> | <%= attachment.likes.size %> Likes</p>
             </div>
       <%end %>
-      <p><strong><%= attachment.user.fullname %></strong> | <%= attachment.likes.size %> Likes</p>
     <% end %>
   <% end %>
 </div>
