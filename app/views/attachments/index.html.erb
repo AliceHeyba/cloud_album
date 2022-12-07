@@ -20,7 +20,7 @@
       <div class="attachment-card">
           <%= link_to (cl_image_tag attachment.posts[0].key, class:"img-event-gallery", crop: :fill), attachment_path(attachment) %>
         <% else %>
-          <%= link_to (cl_video_tag attachment.posts[0].key, controls: true, crop: :fill), attachment_path(attachment)%>
+          <%= link_to (cl_video_tag attachment.posts[0].key, class:"img-event-gallery", controls: true, crop: :fill), attachment_path(attachment)%>
         <% end %>
         <p><strong><%= attachment.user.fullname %></strong> | <%= attachment.likes.size %> Likes</p>
       </div>
