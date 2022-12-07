@@ -39,7 +39,7 @@
                   <% if @attachment.posts[0].content_type.include?("image") %>
                     <%= cl_image_tag @attachment.posts[0].key, class:"img-event-gallery", crop: :fill %>
                   <% else %>
-                    <%= cl_video_tag @attachment.posts[0].key, controls: true, crop: :fill %>
+                    <%= cl_video_tag @attachment.posts[0].key, controls: true, class:"img-event-gallery", crop: :fill%>
                   <% end %>
                 <% end %>
               <% else %>
