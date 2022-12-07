@@ -71,6 +71,6 @@ class AttachmentsController < ApplicationController
   end
 
   def attachment_params
-    params.require(:attachment).permit(posts: [])
+    params.require(:attachment).permit(:caption, posts: [])
   end
 end
