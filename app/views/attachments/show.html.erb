@@ -7,7 +7,7 @@
             <div class="info">
                 <div class="user">
                     <%# <div class="profile-pic"><img src="img/cover 1.png" alt=""></div> %>
-                    <h5 class="username"> Uploaded by <%= @attachment.user.first_name %>🕺🏻</h5>
+                    <h5 class="username"><%= @attachment.user.first_name %></h5>
                 </div>
                 <%# <img src="img/option.PNG" class="options" alt=""> %>
             </div>
@@ -77,7 +77,7 @@
                   <% end %>
                 </div>
                 <% if policy(@attachment).destroy? %>
-                  <%= link_to  event_attachments_path(@attachment.event) , data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},class:"trash-comment-icon" do %>
+                  <%= link_to  event_attachment_path(@attachment.event, @attachment) , data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},class:"trash-comment-icon" do %>
                     <i class="fa-solid fa-trash-can"></i>
                   <% end %>
                 <% end %>
@@ -86,7 +86,7 @@
 
               </div>
               <div class = "comments-text" data-insert-in-comments-text-target="comments">
-                <p class="description"><span><strong><%= @attachment.user.fullname%></strong></span> <%= @attachment.caption%></p>
+                <p class="description"><%= @attachment.caption%></p>
                 <p class="post-time"><%= @attachment.created_at.strftime("%d %b %I:%M %p %Y") %></p>
                 <% if @attachment.comments.any? %>
                   <% @attachment.comments.each do |comment| %>
