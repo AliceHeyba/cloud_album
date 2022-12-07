@@ -2,13 +2,17 @@
 <h1 style="color: black"><%= link_to @event.event_name, event_path(@event) %> </h1>
 </div>
 
-
-<%= form_with url: event_attachments_path(@event), method: :get, class: "d-flex" do %>
-  <%= select_tag "user_selected",
-  options_from_collection_for_select(@event.users_with_attachments.uniq, "id", "fullname"), :include_blank => "All"
-  %>
-  <%= submit_tag "Go", class: "btn btn-filter" %>
-<% end %>
+<div class="user-filter d-flex">
+  <div class="row">
+    <span style="font-size: smaller; margin-left: 15px;">Filter by:</span>
+    <%= form_with url: event_attachments_path(@event), method: :get, class: "d-flex" do %>
+      <%= select_tag "user_selected",
+      options_from_collection_for_select(@event.users_with_attachments.uniq, "id", "fullname"), :include_blank => "All"
+      %>
+      <%= submit_tag "Go", class: "btn btn-filter" %>
+    <% end %>
+  </div>
+</div>
 
 <div class="attachment-container">
   <%if @attachments.any? %>
@@ -51,7 +55,3 @@
       </div>
     </div>
 <%# end %>
-
-<% if policy(Attachment).new? %>
-  <%= link_to "Back", event_path(@event), class: "btn btn-back" %>
-<% end %>
