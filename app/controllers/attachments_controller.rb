@@ -12,6 +12,9 @@ class AttachmentsController < ApplicationController
     else
       @attachments = policy_scope(Attachment).where(event: @event)
     end
+    # @posts_count = []
+    # @attachments.each { |att| @posts_count << att if att.posts.count > 1}
+    # return @posts_count
   end
 
   def new
@@ -36,7 +39,7 @@ class AttachmentsController < ApplicationController
 
     authorize @attachment
     if @attachment.save
-      redirect_to event_attachments_path(@event), notice: "Nice! Attachments uploaded succesfully."
+      redirect_to event_attachments_path(@event), notice: "Nice! Media uploaded succesfully."
     else
       render :new, status: :unprocessable_entity
     end
@@ -48,7 +51,7 @@ class AttachmentsController < ApplicationController
 
   def update
     if @attachment.update(attachment_params)
-      redirect_to attachment_path(@attachment), notice: "Attachment succesfully updated."
+      redirect_to attachment_path(@attachment), notice: "Media succesfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -56,7 +59,7 @@ class AttachmentsController < ApplicationController
 
   def destroy
     @attachment.destroy
-    redirect_to event_attachments_path(@attachment.event), notice: "Attachment succesfully deleted"
+    redirect_to event_attachments_path(@attachment.event), notice: "Media succesfully deleted"
   end
 
   private

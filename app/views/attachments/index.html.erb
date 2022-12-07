@@ -17,17 +17,49 @@
 <div class="attachment-container">
   <%if @attachments.any? %>
     <% @attachments.each do |attachment| %>
-      <% if attachment.posts[0].content_type.include?("image") %>
-      <div class="attachment-card">
-          <%= link_to (cl_image_tag attachment.posts[0].key, class:"img-event-gallery", crop: :fill), attachment_path(attachment) %>
-        <% else %>
-          <%= link_to (cl_video_tag attachment.posts[0].key, class:"img-event-gallery", controls: true, crop: :fill), attachment_path(attachment)%>
-        <% end %>
-        <p><strong><%= attachment.user.fullname %></strong> | <%= attachment.likes.size %> Likes</p>
-      </div>
-    <%end %>
+      <% if attachment.posts.length > 1 %>
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+          <div class="carousel-indicators">
+            <% attachment.posts.each_with_index do |post, index| %>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="<%="#{index}" %>" class="<%= index.zero? ? "active" : nil %>", aria-current="<%= index.zero? ? "true" : nil %>" aria-label="Slide <%="#{index}" %>"></button>
+            <% end %>
+          </div>
+            <div class="carousel-inner">
+              <% attachment.posts.each_with_index do |post, index| %>
+              <div class="carousel-item <%= index.zero? ? "active" : nil %>">
+                <% if post.content_type.include?("image") %>
+                  <%= link_to (cl_image_tag post.key, class:"img-event-gallery d-block w-100", crop: :fill), attachment_path(attachment) %>
+                <% else %>
+                  <%= link_to (cl_video_tag post.key, controls: true, class:"img-event-gallery d-block w-100", crop: :fill), attachment_path(attachment) %>
+                <% end %>
+              </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+                </button>
+              <% end %>
+                 <p><strong><%= attachment.user.fullname %></strong> | <%= attachment.likes.size %> Likes</p>
+          </div>
+        </div>
+      <% else %>
+          <% if attachment.posts[0].content_type.include?("image") %>
+            <div class="attachment-card">
+              <%= link_to (cl_image_tag attachment.posts[0].key, class:"img-event-gallery", crop: :fill), attachment_path(attachment) %>
+          <% else %>
+              <%= link_to (cl_video_tag attachment.posts[0].key, class:"img-event-gallery", controls: true, crop: :fill), attachment_path(attachment)%>
+          <% end %>
+            </div>
+      <%end %>
+      <p><strong><%= attachment.user.fullname %></strong> | <%= attachment.likes.size %> Likes</p>
+    <% end %>
   <% end %>
 </div>
+
+
 
 <%#= link_to  new_event_attachment_path(@event), class: "floating-btn" do %>
     <button type="button" class="floating-btn" data-bs-toggle ="modal" data-bs-target="#exampleModal"><span class="material-icons">add</span></button>
