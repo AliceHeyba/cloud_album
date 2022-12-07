@@ -114,9 +114,11 @@
       <!-- [...] -->
     </div>
     <% if policy(@comment).create? %>
+    <div class="cover-layer" style="height: 60px;"></div>
     <div class="comment-box">
       <%= simple_form_for([@attachment, @comment],
         data: {insert_in_comments_text_target: "form", action: "submit->insert-in-comments-text#send"}) do |f|%>
+
         <div class="position-relative">
           <%= f.text_area :content, placeholder: "Add a comment...", class: "comment-input" %>
           <%= button_tag type: :submit, class: "comment-btn" do %>
@@ -130,6 +132,3 @@
     <% end %>
   </div>
 </div>
-
-
-<%= link_to "Back", event_attachments_path(@attachment.event), class: "btn btn-back back-to-event-page" %>
