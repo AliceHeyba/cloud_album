@@ -7,7 +7,7 @@
             <div class="info">
                 <div class="user">
                     <%# <div class="profile-pic"><img src="img/cover 1.png" alt=""></div> %>
-                    <h5 class="username"> Uploaded by <%= @attachment.user.first_name %>🕺🏻</h5>
+                    <h5 class="username"><%= @attachment.user.first_name %></h5>
                 </div>
                 <%# <img src="img/option.PNG" class="options" alt=""> %>
             </div>
@@ -86,7 +86,7 @@
 
               </div>
               <div class = "comments-text" data-insert-in-comments-text-target="comments">
-                <p class="description"><span><strong><%= @attachment.user.fullname%></strong></span> <%= @attachment.caption%></p>
+                <p class="description"><%= @attachment.caption%></p>
                 <p class="post-time"><%= @attachment.created_at.strftime("%d %b %I:%M %p %Y") %></p>
                 <% if @attachment.comments.any? %>
                   <% @attachment.comments.each do |comment| %>
