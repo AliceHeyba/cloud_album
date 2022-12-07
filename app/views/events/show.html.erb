@@ -56,9 +56,10 @@
       <% end %>
       <% end %>
     </div>
-    <div class="qr-button">
+    <div class="qr-button"><% if policy(@event).edit? %>
       <button class="qr-toggle" data-action="click->qrcode#toggle"><span class="material-symbols-outlined">qr_code_2</span>
       </button>
+      <% end %>
     </div>
   </div>
   <div class="qr-code d-none" data-qrcode-target="qr">
