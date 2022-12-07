@@ -10,9 +10,6 @@
 
                 <% if event.banner.present? %>
                   <%= cl_image_tag event.banner.key, width: 400, crop: :fill, class: "card-img-top" %>
-
-                <% else %>
-                # put default image
                 <%end%>
                 <div class="card-content">
                   <h4><%= event.event_name %></h4>

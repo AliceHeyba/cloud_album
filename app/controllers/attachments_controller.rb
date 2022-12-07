@@ -36,7 +36,7 @@ class AttachmentsController < ApplicationController
 
     authorize @attachment
     if @attachment.save
-      redirect_to event_attachments_path(@event), notice: "Nice! Attachments uploaded succesfully."
+      redirect_to event_attachments_path(@event), notice: "Nice! Media uploaded succesfully."
     else
       render :new, status: :unprocessable_entity
     end
@@ -48,7 +48,7 @@ class AttachmentsController < ApplicationController
 
   def update
     if @attachment.update(attachment_params)
-      redirect_to attachment_path(@attachment), notice: "Attachment succesfully updated."
+      redirect_to attachment_path(@attachment), notice: "Media succesfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -56,7 +56,7 @@ class AttachmentsController < ApplicationController
 
   def destroy
     @attachment.destroy
-    redirect_to event_attachments_path(@attachment.event), notice: "Attachment succesfully deleted"
+    redirect_to event_attachments_path(@attachment.event), notice: "Media succesfully deleted"
   end
 
   private
