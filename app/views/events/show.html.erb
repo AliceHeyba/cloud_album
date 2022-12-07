@@ -1,7 +1,56 @@
 
 <div class="event-show-container" data-controller="qrcode">
     <div class="event-show-content">
-      <h2><%= @event.event_name %></h2>
+      <div class="title-edit-QR d-flex justify-content-between align-items-center">
+        <div class="event-title">
+          <h2><%= @event.event_name %></h2>
+        </div>
+        <div class="edit-QR d-flex align-items-center">
+          <div class="QR-scanner">
+            <% if policy(@event).edit? %>
+              <button type="button" class="qr-toggle qr-and-unique-code" data-bs-toggle="modal" data-bs-target="#exampleModal1"><span id = "edit-qr-unique-code" class="material-symbols-outlined">ios_share</span></button>
+              <%# <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                Launch demo modal
+              </button> %>
+              <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModal1Label" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModal1Label">Scan to join my event!</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body d-flex justify-content-around">
+                      <div class="row">
+                        <div class="event-unique-number text-center fw-bold pb-3">
+                          Event code: <%= @event.event_number %>
+                        </div>
+                        <div class="qr-code-scan d-flex justify-content-center">
+                          <%= @svg.html_safe %>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <div class="input-group" data-controller="qrcode_copy" data-qrcode-feedback-text-value="Copied!">
+                        <input class="form-control" data-qrcode-target="input" type="text" value= "cloudalbum.xyz/events/<%= @event.event_number %>" readonly>
+                        <div class="input-group-append">
+                          <button id="copy-button" class="btn btn-primary" data-action="click->qrcode#copy" data-text="Copied!">Copy</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <div class="edit-event">
+          <% if policy(@event).edit? %>
+            <%= link_to edit_event_path(@event) do %>
+              <span id="edit-button-unique-code" class="material-symbols-outlined">edit_square</span>
+            <% end %>
+          <% end %>
+          </div>
+        </div>
+      </div>
         <% if @event.banner.present? %>
           <% if @event.banner.content_type.include?("image") %>
             <%= link_to (cl_image_tag @event.banner.key, class:"event-banner", crop: :fill) %>
@@ -56,12 +105,40 @@
       <% end %>
       <% end %>
     </div>
-    <div class="qr-button"><% if policy(@event).edit? %>
-      <button class="qr-toggle" data-action="click->qrcode#toggle"><span class="material-symbols-outlined">qr_code_2</span>
-      </button>
+    <div class="qr-button">
+      <% if policy(@event).edit? %>
+        <button type="button" class="qr-toggle" data-bs-toggle="modal" data-bs-target="#exampleModal1"><span class="material-symbols-outlined">ios_share</span></button>
+        <%# <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+          Launch demo modal
+        </button> %>
+        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModal1Label" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModal1Label">Scan to join my event!</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body d-flex justify-content-around">
+                <div class="row">
+                  <div class="event-unique-number text-center fw-bold pb-3">
+                    Event code: <%= @event.event_number %>
+                  </div>
+                  <div class="qr-code-scan d-flex justify-content-center">
+                    <%= @svg.html_safe %>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <div class="input-group" data-controller="qrcode_copy" data-qrcode-feedback-text-value="Copied!">
+                  <input class="form-control" data-qrcode-target="input" type="text" value= "cloudalbum.xyz/events/<%= @event.event_number %>" readonly>
+                  <div class="input-group-append">
+                    <button id="copy-button" class="btn btn-primary" data-action="click->qrcode#copy" data-text="Copied!">Copy</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       <% end %>
     </div>
-  </div>
-  <div class="qr-code d-none" data-qrcode-target="qr">
-    <%= @svg.html_safe %>
   </div>

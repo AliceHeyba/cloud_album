@@ -10,7 +10,6 @@ export default class extends Controller {
     this.inputTarget.select();
     document.execCommand('copy');
     event.currentTarget.disabled = true;
-    // event.currentTarget.innerText = this.feedbackTextValue;
-    event.currentTarget.innerText = event.currentTarget.dataset.text;
+    event.currentTarget.innerText = this.feedbackTextValue;
   }
 }
