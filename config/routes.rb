@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :attachments, only: [:new, :create, :index, :destroy]
   end
 
-  resources :attachments, except: [:index, :new, :create] do
+  resources :attachments, except: [:index, :new, :create, :destroy] do
     resources :comments, only: [:create, :edit, :update]
     resources :likes, only: :create
   end
