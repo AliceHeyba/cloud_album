@@ -42,8 +42,8 @@
                 <span class="visually-hidden">Next</span>
                 </button>
               <% end %>
-                 <p><strong><%= attachment.user.fullname %></strong> | <%= attachment.likes.size %> Likes</p>
           </div>
+          <p><strong><%= attachment.user.fullname %></strong> | <%= attachment.likes.size %> Likes</p>
         </div>
       <% else %>
           <% if attachment.posts[0].content_type.include?("image") %>
