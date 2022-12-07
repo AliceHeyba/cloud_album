@@ -92,7 +92,7 @@
      }
 
 .meet-the-team img {
-  border-radius: 10px;
+  border-radius: 50%;
   width: 100px;
   height: 100px;
 }
@@ -105,6 +105,7 @@
   padding-left: 10px;
   font-size: small;
   padding-top: -5 px;
+  margin-bottom: 20px;
 }
 
 .careers {
@@ -128,4 +129,8 @@
 
 a:hover {
   color: rgba(106, 103, 103, 0.578);
+}
+
+h2 {
+  margin: 20px 0px 20px 0px;
 }
