@@ -52,7 +52,7 @@
 .careers h3 {
   display: flex;
   justify-content: center;
-  padding: 30px 0px 20px 0px;
+  padding: 30px 0px 0px 0px;
    }
 
 .careers p {
@@ -70,4 +70,22 @@ a:hover {
 
 h2 {
   margin: 20px 0px 20px 0px;
+}
+
+.about-mission h5 {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.about-vision h5 {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.about-culture h5 {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
 }
