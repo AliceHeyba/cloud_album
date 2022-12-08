@@ -1,6 +1,7 @@
 .event-name h1 {
   color: black;
-  margin-left: 10px;
+  // margin-left: 10px;
+  text-align: center;
 }
 
 .event-name h1 a:link {
@@ -41,6 +42,7 @@
   margin-left: 10px;
   padding-left: 5px;
   padding-right: 5px;
+  flex-grow:1;
 }
 
 .attachment-card {
@@ -49,4 +51,9 @@
 
 .attachment-card p {
   margin: 5px 0px 0px 10px;
+}
+
+.filter-form-user {
+  width: 100vw;
+  padding-right: 0;
 }

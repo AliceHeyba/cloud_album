@@ -16,7 +16,7 @@
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="exampleModal1Label">Scan to join my event!</h1>
+                      <h1 class="modal-title fs-5" id="exampleModal1Label">Scan to join my event OR copy the code from below!</h1>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body d-flex justify-content-around">
@@ -87,14 +87,18 @@
                   <%= f.input :posts, as: :file, input_html: { multiple: true } %>
                   <%= f.input :caption, placeholder:"Optional" %>
                   <div class="text-center">
-                <%= f.submit class:"btn btn-secondary" %>
+                <%= f.submit 'Upload', class:"btn btn-upload-modal" %>
               </div>
                 <% end %>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss ="modal">Close</button>
+                <button type="button" class="btn btn-close-modal" data-bs-dismiss ="modal">Close</button>
               </div>
             </div>
           </div>
         </div>
       <%end %>
+
+    <!--/div>
+  </div-->
+
