@@ -61,7 +61,7 @@
             <div class="post-content">
               <div class="like-and-delete d-flex justify-content-between">
                 <div class = "likes-icon d-flex justify-content-start" >
-                  <p class="likes"><%= @attachment.likes.size %> Likes</p>
+                  <p class="likes"><%= pluralize(@attachment.likes.count, "Like") %>
                     <% like = current_user.likes.find_by(attachment: @attachment) %>
                   <% if current_user %>
                     <% if like.nil? %>
