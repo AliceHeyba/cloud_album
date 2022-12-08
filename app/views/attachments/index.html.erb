@@ -1,47 +1,44 @@
 <div class="event-name">
-<h1 style="color: black"><%= link_to @event.event_name, event_path(@event) %> </h1>
+  <h1 style="color: black"><%= link_to @event.event_name, event_path(@event) %> </h1>
 </div>
-
 <div class="user-filter d-flex">
   <div class="row">
-    <span style="font-size: smaller; margin-left: 15px;">Filter by:</span>
-    <%= form_with url: event_attachments_path(@event), method: :get, class: "d-flex" do %>
-      <%= select_tag "user_selected",
-      options_from_collection_for_select(@event.users_with_attachments.uniq, "id", "fullname"), :include_blank => "All"
-      %>
+    <%= form_with url: event_attachments_path(@event), method: :get, class: "d-flex filter-form-user" do %>
+      <%= select_tag "user_selected",options_from_collection_for_select(@event.users_with_attachments.uniq, "id", "fullname"), :include_blank => "All", :prompt => "Filter by user"%>
       <%= submit_tag "Go", class: "btn btn-filter" %>
     <% end %>
   </div>
 </div>
-
 <div class="attachment-container">
   <%if @attachments.any? %>
     <% @attachments.each do |attachment| %>
       <% if attachment.posts.length > 1 %>
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
-          <div class="carousel-indicators">
-            <% attachment.posts.each_with_index do |post, index| %>
-              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="<%="#{index}" %>" class="<%= index.zero? ? "active" : nil %>", aria-current="<%= index.zero? ? "true" : nil %>" aria-label="Slide <%="#{index}" %>"></button>
-            <% end %>
-          </div>
-            <div class="carousel-inner">
+        <div class="attachment-card">
+          <div id="carouselIndexIndicators<%= attachment.id %>" class="carousel slide" data-bs-ride="true">
+            <div class="carousel-indicators">
               <% attachment.posts.each_with_index do |post, index| %>
-              <div class="carousel-item <%= index.zero? ? "active" : nil %>">
-                <% if post.content_type.include?("image") %>
-                  <%= link_to (cl_image_tag post.key, class:"img-event-gallery d-block w-100", crop: :fill), attachment_path(attachment) %>
-                <% else %>
-                  <%= link_to (cl_video_tag post.key, controls: true, class:"img-event-gallery d-block w-100", crop: :fill), attachment_path(attachment) %>
+                <button type="button" data-bs-target="#carouselIndexIndicators<%= attachment.id %>" data-bs-slide-to="<%="#{index}" %>" class="<%= index.zero? ? "active" : nil %>", aria-current="<%= index.zero? ? "true" : nil %>" aria-label="Slide <%="#{index}" %>"></button>
+              <% end %>
+            </div>
+              <div class="carousel-inner">
+                <% attachment.posts.each_with_index do |post, index| %>
+                  <div class="carousel-item <%= index.zero? ? "active" : nil %>">
+                    <% if post.content_type.include?("image") %>
+                      <%= link_to (cl_image_tag post.key, class:"img-event-gallery d-block w-100", crop: :fill), attachment_path(attachment) %>
+                    <% else %>
+                      <%= link_to (cl_video_tag post.key, controls: true, class:"img-event-gallery d-block w-100", crop: :fill), attachment_path(attachment) %>
+                    <% end %>
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndexIndicators<%= attachment.id %>" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#carouselIndexIndicators<%= attachment.id %>" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
                 <% end %>
               </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-                </button>
-              <% end %>
           </div>
           <p><strong><%= attachment.user.fullname %></strong> | <%= attachment.likes.size %> Likes</p>
         </div>
@@ -52,7 +49,11 @@
           <% else %>
               <%= link_to (cl_video_tag attachment.posts[0].key, class:"img-event-gallery", controls: true, crop: :fill), attachment_path(attachment)%>
           <% end %>
+<<<<<<< HEAD
           <p><strong><%= attachment.user.fullname %></strong> | <%= attachment.likes.size %> Likes</p>
+=======
+              <p><strong><%= attachment.user.fullname %></strong> | <%= attachment.likes.size %> Likes</p>
+>>>>>>> 0ad9f5917503d8101a86f51b04547c0a1de92e70
             </div>
       <%end %>
     <% end %>
@@ -76,14 +77,11 @@
               <%= f.input :posts, as: :file, input_html: { multiple: true } %>
               <%= f.input :caption, placeholder:"Optional" %>
                <div class="text-center">
-                <%= f.submit class:"btn btn-secondary" %>
+                <%= f.submit 'Upload', class:"btn btn-upload-modal" %>
               </div>
             <% end %>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-bs-dismiss ="modal">Close</button>
+            <button type="button" class="btn btn-close-modal" data-bs-dismiss ="modal">Close</button>
           </div>
         </div>
-      </div>
-    </div>
-<%# end %>
