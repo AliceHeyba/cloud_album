@@ -1,4 +1,6 @@
- <%= simple_form_for [ @attachment, @comment ] do |f| %>
+<div class="comment-margin" style="margin-left: 10px; margin-right: 10px;">
+  <%= simple_form_for [ @attachment, @comment ] do |f| %>
   <%= f.input :content %>
-  <%= f.submit class:"btn btn-update-comment mt-3 " %>
-<% end %>
+  <%= f.submit class:"btn btn-update-comment mt-3" %>
+  <% end  %>
+</div>
