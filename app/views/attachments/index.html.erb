@@ -39,9 +39,9 @@
                   </button>
                 <% end %>
               </div>
-          </div>
-        </div>
+            </div>
           <p><strong><%= attachment.user.fullname %></strong> | <%= pluralize(attachment.likes.count, "Like") %></p>
+        </div>
       <% else %>
           <% if attachment.posts[0].content_type.include?("image") %>
             <div class="attachment-card">
