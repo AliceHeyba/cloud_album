@@ -16,7 +16,7 @@
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="exampleModal1Label">Scan to join my event OR copy the code from below!</h1>
+                      <h1 class="modal-title fs-5" id="exampleModal1Label">Scan OR copy this code!</h1>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body d-flex justify-content-around">
@@ -31,7 +31,7 @@
                     </div>
                     <div class="modal-footer">
                       <div class="input-group align-items-center" data-controller="qrcode_copy" data-qrcode-feedback-text-value="Copied!">
-                        <input class="form-control" data-qrcode-target="input" type="text" value= "cloudalbum.xyz/find_event?event_number=<%= @event.event_number %>" readonly>
+                        <input class="form-control" data-qrcode-target="input" type="text" value= "www.cloudalbum.xyz/find_event?event_number=<%= @event.event_number %>" readonly>
                         <div class="input-group-append">
                           <button id="copy-button" class="btn btn-primary" data-action="click->qrcode#copy" data-text="Copied!">Copy</button>
                         </div>
@@ -101,4 +101,3 @@
 
     <!--/div>
   </div-->
-
