@@ -16,7 +16,7 @@
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="exampleModal1Label">Scan to join my event!</h1>
+                      <h1 class="modal-title fs-5" id="exampleModal1Label">Scan to join my event OR copy the code from below!</h1>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body d-flex justify-content-around">
@@ -87,58 +87,16 @@
                   <%= f.input :posts, as: :file, input_html: { multiple: true } %>
                   <%= f.input :caption, placeholder:"Optional" %>
                   <div class="text-center">
-                <%= f.submit class:"btn btn-secondary" %>
+                <%= f.submit 'Upload', class:"btn btn-upload-modal" %>
               </div>
                 <% end %>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss ="modal">Close</button>
+                <button type="button" class="btn btn-close-modal" data-bs-dismiss ="modal">Close</button>
               </div>
             </div>
           </div>
         </div>
       <%end %>
-    <div class="event-admin-buttons d-flex align-items-end justify-content-around">
-    <div class="edit-button"><% if policy(@event).edit? %>
-      <%= link_to edit_event_path(@event) do %>
-        <span class="material-symbols-outlined">edit_square</span>
-      <% end %>
-      <% end %>
-    </div>
-    <div class="qr-button">
-      <% if policy(@event).edit? %>
-        <button type="button" class="qr-toggle" data-bs-toggle="modal" data-bs-target="#exampleModal1"><span class="material-symbols-outlined">ios_share</span></button>
-        <%# <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-          Launch demo modal
-        </button> %>
-        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModal1Label" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModal1Label">Scan to join my event!</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body d-flex justify-content-around">
-                <div class="row">
-                  <div class="event-unique-number text-center fw-bold pb-3">
-                    Event code: <%= @event.event_number %>
-                  </div>
-                  <div class="qr-code-scan d-flex justify-content-center">
-                    <%= @svg.html_safe %>
-                  </div>
-                </div>
-              </div>
-              <div class="modal-footer">
-                <div class="input-group" data-controller="qrcode_copy" data-qrcode-feedback-text-value="Copied!">
-                  <input class="form-control" data-qrcode-target="input" type="text" value= "cloudalbum.xyz/events/<%= @event.event_number %>" readonly>
-                  <div class="input-group-append">
-                    <button id="copy-button" class="btn btn-primary" data-action="click->qrcode#copy" data-text="Copied!">Copy</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      <% end %>
     </div>
   </div>
