@@ -21,7 +21,7 @@
       <% end  %>
     <% end %>
     <% if policy(comment).destroy? %>
-      <%= link_to comment_path(comment) , data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},class:"trash-comment-icon" do %>
+      <%= link_to comment_path(comment) , data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"trash-comment-icon" do %>
         <i class="fa-solid fa-trash-can"></i>
       <% end %>
     <% end %>

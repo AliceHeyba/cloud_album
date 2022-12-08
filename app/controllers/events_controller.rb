@@ -17,7 +17,7 @@ class EventsController < ApplicationController
   def show
     @attachment = Attachment.new
     @event = Event.find(params[:id])
-    @qr_code = RQRCode::QRCode.new("cloudalbum.xyz/events/#{@event.id}")
+    @qr_code = RQRCode::QRCode.new("www.cloudalbum.xyz/events/#{@event.id}")
     @svg = @qr_code.as_svg(
       offset: 0,
       color: '000',
