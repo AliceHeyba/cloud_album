@@ -49,11 +49,7 @@
           <% else %>
               <%= link_to (cl_video_tag attachment.posts[0].key, class:"img-event-gallery", controls: true, crop: :fill), attachment_path(attachment)%>
           <% end %>
-<<<<<<< HEAD
-          <p><strong><%= attachment.user.fullname %></strong> | <%= attachment.likes.size %> Likes</p>
-=======
               <p><strong><%= attachment.user.fullname %></strong> | <%= attachment.likes.size %> Likes</p>
->>>>>>> 0ad9f5917503d8101a86f51b04547c0a1de92e70
             </div>
       <%end %>
     <% end %>
