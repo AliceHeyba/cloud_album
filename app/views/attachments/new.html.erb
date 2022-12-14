@@ -5,7 +5,7 @@
         <%= simple_form_for [@event, @attachment] do |f| %>
            <%= f.input :posts, as: :file, input_html: { multiple: true, resource_type: :auto } %>
           <div class="text-center">
-          <% raise %>
+          <%# <% raise %>
             <%= f.submit class:"btn btn-success btn-booking-event text-white mt-3" %>
           </div>
       <% end %>
