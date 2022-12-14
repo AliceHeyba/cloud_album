@@ -6,7 +6,7 @@
            <%= f.input :posts, as: :file, input_html: { multiple: true, resource_type: :auto } %>
           <div class="text-center">
           <%# <% raise %>
-            <%= f.submit class:"btn btn-success btn-booking-event text-white mt-3" %>
+            <%= f.submit class:"btn btn-edit text-white mt-3" %>
           </div>
       <% end %>
     </div>
@@ -14,4 +14,4 @@
 </div>
 
 
-<%= link_to "Back to event homepage", event_path(@event), class: "btn btn-edit" %>
+<%= link_to "Back to event homepage", event_path(@event), class: "btn btn-edit text-white mt-3" %>
