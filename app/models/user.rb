@@ -19,8 +19,11 @@ class User < ApplicationRecord
 
 
 
+
   def fullname
-    return "#{first_name} #{last_name}"
+    a = first_name.capitalize
+    b = last_name.capitalize
+    return "#{a} #{b}"
   end
 
 end

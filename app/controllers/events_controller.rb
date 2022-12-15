@@ -1,20 +1,28 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: %i[show edit update destroy]
+  before_action :set_event, only: %i[edit show update destroy]
+  before_action :authorize_event, only: :show
   # include Pundit
   # before_action :authorize, only: :find_event
 
   # after_action :create_qr, only: :create
 
   def index
-      @events = policy_scope(Event).all
+    # get all the events where the current user is the creator or the guest
+    @events = policy_scope(Event).select do |event|
+      event.guest?(current_user) || event.user == current_user
+    end
   end
+
 
   def new
     @event = Event.new
     authorize @event
   end
 
+
+
   def show
+    @event = (Event.find(params[:id]))
     @attachment = Attachment.new
     @event = Event.find(params[:id])
     @qr_code = RQRCode::QRCode.new("www.cloudalbum.xyz/events/#{@event.id}")
@@ -42,6 +50,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    @event.guestlist = params[:event][:guestlist].split("\n").map(&:strip)
     @event.user = current_user
     authorize @event
     if @event.save!
@@ -56,6 +65,7 @@ class EventsController < ApplicationController
   end
 
   def update
+    @event.guestlist = params[:event][:guestlist].split("\n").map(&:strip)
     if @event.update(event_params)
       redirect_to event_path(@event), notice: "Event succesfully updated."
     else
@@ -77,5 +87,12 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(:event_date, :event_name, :event_description, :location, :banner, :qr_code)
+  end
+
+  def authorize_event
+    unless @event.guest?(current_user) || @event.user == current_user
+      flash[:alert] = "You are not authorized to access this event"
+      redirect_to events_path
+    end
   end
 end
