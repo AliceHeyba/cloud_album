@@ -5,7 +5,16 @@ class Event < ApplicationRecord
   has_many :guests, dependent: :destroy
   has_many :users, through: :guests
   has_many :users_with_attachments, through: :attachments, source: :user
+
+
+  # Add this line to add the guestlist attribute to the model
+  def guest?(guest_user)
+    guestlist.include?(guest_user.fullname)
+  end
+
+
   before_create :set_event_number
+
 
   def set_event_number
     self.event_number = generate_event_number

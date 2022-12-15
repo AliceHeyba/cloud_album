@@ -8,7 +8,7 @@
           <%= f.input :event_description %>
           <%= f.input :location %>
           <%= f.input :banner, as: :file %>
-          <%#= f.association :guests, collection: User.all, input_html: { multiple: true }, label_method: lambda { |user| "#{user.first_name} #{user.last_name}" }, label_value: :id %>
+          <%= f.input :guestlist, as: :text, input_html: { value: @event.guestlist.any? ? @event.guestlist.join("\n") : "" }%>
           <div class="home-CTA-buttons d-grid gap-2">
             <%= f.submit class:"btn btn-secondary" %>
           </div>
