@@ -9,7 +9,7 @@ class Event < ApplicationRecord
 
   # Add this line to add the guestlist attribute to the model
   def guest?(guest_user)
-    guestlist.include?(guest_user.fullname)
+    guestlist.include?(guest_user.email)
   end
 
 

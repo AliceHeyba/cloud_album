@@ -50,11 +50,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_15_110640) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.jsonb "meta_creation"
-    t.integer "cached_votes_total", default: 0
-    t.integer "cached_votes_score", default: 0
-    t.integer "cached_votes_up", default: 0
-    t.integer "cached_votes_down", default: 0
-    t.integer "cached_weighted_score", default: 0
     t.index ["event_id"], name: "index_attachments_on_event_id"
     t.index ["user_id"], name: "index_attachments_on_user_id"
   end
