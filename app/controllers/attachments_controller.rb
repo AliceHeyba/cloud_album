@@ -5,12 +5,12 @@ class AttachmentsController < ApplicationController
   def index
     @attachment = Attachment.new
     if params["user_selected"]&.empty?
-      @attachments = policy_scope(Attachment).where(event: @event)
+      @attachments = policy_scope(Attachment).where(event: @event).order(created_at: :desc)
     elsif params["user_selected"]
       @user = User.find(params["user_selected"])
-      @attachments = policy_scope(Attachment).where(event: @event, user: @user)
+      @attachments = policy_scope(Attachment).where(event: @event, user: @user).order(created_at: :desc)
     else
-      @attachments = policy_scope(Attachment).where(event: @event)
+      @attachments = policy_scope(Attachment).where(event: @event).order(created_at: :desc)
     end
     # @posts_count = []
     # @attachments.each { |att| @posts_count << att if att.posts.count > 1}
