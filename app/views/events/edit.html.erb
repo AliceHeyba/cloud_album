@@ -8,7 +8,7 @@
           <%= f.input :event_description %>
           <%= f.input :location %>
           <%= f.input :banner, as: :file %>
-          <%= f.input :guestlist, as: :text, input_html: { value: @event.guestlist.any? ? @event.guestlist.join("\n") : "" }%>
+          <%= f.input :guestlist, as: :email, input_html: { value: @event.guestlist.any? ? @event.guestlist.join("\n") : "" }%>
           <div class="home-CTA-buttons d-grid gap-2">
             <%= f.submit class:"btn btn-secondary" %>
           </div>
