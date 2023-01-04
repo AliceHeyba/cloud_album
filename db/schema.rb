@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_15_110640) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_02_130347) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -50,6 +50,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_15_110640) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.jsonb "meta_creation"
+    t.integer "cached_votes_total", default: 0
+    t.integer "cached_votes_score", default: 0
+    t.integer "cached_votes_up", default: 0
+    t.integer "cached_votes_down", default: 0
+    t.integer "cached_weighted_score", default: 0
     t.index ["event_id"], name: "index_attachments_on_event_id"
     t.index ["user_id"], name: "index_attachments_on_user_id"
   end
@@ -76,6 +81,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_15_110640) do
     t.string "qr_code"
     t.string "guestlist", default: [], array: true
     t.index ["user_id"], name: "index_events_on_user_id"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "attachment_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["attachment_id"], name: "index_favorites_on_attachment_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "guests", force: :cascade do |t|
@@ -133,6 +147,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_15_110640) do
   add_foreign_key "comments", "attachments"
   add_foreign_key "comments", "users"
   add_foreign_key "events", "users"
+  add_foreign_key "favorites", "attachments"
+  add_foreign_key "favorites", "users"
   add_foreign_key "guests", "events"
   add_foreign_key "guests", "users"
   add_foreign_key "likes", "attachments"

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: "pages#home"
   get "about", to: "about#index"
   get "questions", to: "questions#index"
+  get "account", to: "account#index"
   get '/find', to: 'pages#find', as: 'find'
   get '/find_event', to: 'events#find_event', as: 'find_event'
   # get '/events/:event_number', to: 'events#show', as: 'event'
