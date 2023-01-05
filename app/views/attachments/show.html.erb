@@ -93,7 +93,7 @@
               </div>
               <div class = "comments-text" data-insert-in-comments-text-target="comments">
                 <p class="description"><%= @attachment.caption%></p>
-                <p class="post-time"><%= @attachment.created_at.strftime("%d %b %I:%M %p %Y") %></p>
+                <p class="post-time"><%= @attachment.created_at.strftime("%d %b %Y") %></p>
                 <% if @attachment.comments.any? %>
                   <% @attachment.comments.each do |comment| %>
 
