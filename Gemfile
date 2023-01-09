@@ -85,3 +85,4 @@ group :test do
 end
 
 gem 'rqrcode'
+gem 'jquery-rails'

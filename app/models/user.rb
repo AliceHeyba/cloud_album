@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :likes
   has_many :comments, through: :attachments
   has_many :guests
+  has_many :favorites
   has_one_attached :avatar
   validates :first_name, :last_name, presence: true
 
@@ -17,7 +18,9 @@ class User < ApplicationRecord
     first_initial + last_initial
   end
 
-
+  def favorited?(attachment)
+    favorites.where(attachment: attachment).exists?
+  end
 
 
   def fullname
