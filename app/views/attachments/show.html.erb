@@ -59,28 +59,51 @@
             <%# check if current user %>
             <%#  %>
             <div class="post-content">
-              <div class="like-and-delete d-flex justify-content-between">
+              <div class="like-and-delete-and-favorite d-flex justify-content-between">
                 <div class = "likes-icon d-flex justify-content-start" >
-                  <p class="likes"><%= pluralize(@attachment.likes.count, "Like") %>
-                    <% like = current_user.likes.find_by(attachment: @attachment) %>
+                  <div class="likes-icon-number">
+                    <p class="likes"><%= pluralize(@attachment.likes.count, "Like") %>
+                      <% like = current_user.likes.find_by(attachment: @attachment) %>
+                    <% if current_user %>
+                      <% if like.nil? %>
+                        <%= link_to  attachment_likes_path(@attachment), data: {turbo_method: :post}, class:"likes-icons" do %>
+                          <i class="fa-regular fa-heart"></i>
+                        <% end %>
+                      <% else %>
+
+                        <%= link_to like_path(like), data: {turbo_method: :delete}, class:"likes-icons" do %>
+                          <i class="fa-solid fa-heart"></i>
+                        <% end %>
+                      <% end %>
+                    <% else %>
+                      <%# signup %>
+                        <%= link_to attachment_likes_path(@attachment), data: {turbo_method: :post},
+                          class:"likes-icons" do %>
+                          <i class="fa-regular fa-heart"></i>
+                        <% end %>
+                    <% end %>
+                  </div>
+                  <div class="favorite-icon">
+                  <% favorite = current_user.favorites.find_by(attachment: @attachment) %>
                   <% if current_user %>
-                    <% if like.nil? %>
-                      <%= link_to  attachment_likes_path(@attachment), data: {turbo_method: :post}, class:"likes-icons" do %>
-                        <i class="fa-regular fa-heart"></i>
+                    <% if favorite.nil? %>
+                      <%= link_to  attachment_favorites_path(@attachment), data: {turbo_method: :post}, class:"favorites-icons" do %>
+                        <i class="fa-regular fa-bookmark"></i>
                       <% end %>
                     <% else %>
 
-                      <%= link_to like_path(like), data: {turbo_method: :delete}, class:"likes-icons" do %>
-                        <i class="fa-solid fa-heart"></i>
+                      <%= link_to favorite_path(favorite), data: {turbo_method: :delete}, class:"favorites-icons" do %>
+                        <i class="fa-solid fa-bookmark"></i>
                       <% end %>
                     <% end %>
                   <% else %>
                     <%# signup %>
-                      <%= link_to attachment_likes_path(@attachment), data: {turbo_method: :post},
-                        class:"likes-icons" do %>
-                        <i class="fa-regular fa-heart"></i>
+                      <%= link_to attachment_favorites_path(@attachment), data: {turbo_method: :post},
+                        class:"favorites-icons" do %>
+                        <i class="fa-regular fa-bookmark"></i>
                       <% end %>
                   <% end %>
+                  </div>
                 </div>
                 <% if policy(@attachment).destroy? %>
                   <%= link_to  event_attachment_path(@attachment.event, @attachment) , data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},class:"trash-comment-icon" do %>

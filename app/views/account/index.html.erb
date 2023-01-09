@@ -3,3 +3,50 @@
 <p>Welcome to your account page <%= current_user.fullname %>!</p>
 
   <%= link_to "Edit my account info", edit_user_registration_path %>
+
+<% if current_user.favorites.any? %>
+  <ul>
+    <% current_user.favorites.each do |favorite| %>
+    <h2> Favorites from <%= favorite.attachment.event.event_name %></h2>
+      <%= link_to attachment_path(favorite.attachment) do %>
+        <% if favorite.attachment.posts.attached? %>
+          <% if favorite.attachment.posts.length > 1 %>
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+              <div class="carousel-indicators">
+                <% favorite.attachment.posts.each_with_index do |post, index| %>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="<%="#{index}" %>" class="<%= index.zero? ? "active" : nil %>", aria-current="<%= index.zero? ? "true" : nil %>" aria-label="Slide <%="#{index}" %>"></button>
+                <% end %>
+              </div>
+
+              <div class="carousel-inner">
+                <% favorite.attachment.posts.each_with_index do |post, index| %>
+                  <div class="carousel-item <%= index.zero? ? "active" : nil %>">
+                    <% if post.content_type.include?("image") %>
+                      <%= cl_image_tag post.key, class:"img-event-gallery d-block w-100", crop: :fill %>
+                    <% else %>
+                      <%= cl_video_tag post.key, controls: true, class:"img-event-gallery d-block w-100", crop: :fill %>
+                    <% end %>
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                <% end %>
+              </div>
+            </div>
+          <% else %>
+            <% if favorite.attachment.posts[0].content_type.include?("image") %>
+              <%= cl_image_tag favorite.attachment.posts[0].key, class:"img-event-gallery", crop: :fill %>
+            <% else %>
+              <%= cl_video_tag favorite.attachment.posts[0].key, controls: true, class:"img-event-gallery", crop: :fill %>
+            <%end%>
+          <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+  </ul>
+<% end  %>

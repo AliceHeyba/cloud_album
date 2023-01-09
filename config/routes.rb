@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'favorites/update'
   devise_for :users
   root to: "pages#home"
   get "about", to: "about#index"
@@ -6,6 +7,7 @@ Rails.application.routes.draw do
   get "account", to: "account#index"
   get '/find', to: 'pages#find', as: 'find'
   get '/find_event', to: 'events#find_event', as: 'find_event'
+
   # get '/events/:event_number', to: 'events#show', as: 'event'
 
 
@@ -16,7 +18,9 @@ Rails.application.routes.draw do
   resources :attachments, except: [:index, :new, :create, :destroy] do
     resources :comments, only: [:create, :edit, :update]
     resources :likes, only: :create
+    resources :favorites, only: :create
   end
   resources :comments, only: [:destroy]
   resources :likes, only: :destroy
+  resources :favorites, only: :destroy
 end
