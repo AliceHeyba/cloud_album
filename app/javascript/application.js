@@ -1,7 +1,6 @@
 // Entry point for the build script in your package.json
 import "@hotwired/turbo-rails"
 import "./controllers"
-import "bootstrap"
 // ./packs/application.js
 import { Application } from 'stimulus'
 import { definitionsFromContext } from 'stimulus/webpack-helpers'
@@ -9,6 +8,8 @@ import { definitionsFromContext } from 'stimulus/webpack-helpers'
 const application = Application.start()
 const context = require.context('../controllers', true, /\.js$/)
 application.load(definitionsFromContext(context));
+
+
 
 //= require jquery3
 //= require jquery_ujs
@@ -18,4 +19,4 @@ application.load(definitionsFromContext(context));
 //   document.querySelector(".qr-code").classList.toggle("d-none")
 // });
 
-require("@rails/ujs").start()
+//require("@rails/ujs").start()
