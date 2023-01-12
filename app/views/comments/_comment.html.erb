@@ -5,11 +5,6 @@
   <% else %>
     <p class="initials-circle" data-toggle="popover" data-trigger="focus" title="<%= comment.user.fullname %>"><em><%= comment.user.initials %></em></p>
   <% end %>
-  <script>
-    $(document).ready(function() {
-      $('[data-toggle="popover"]').popover();
-    });
-  </script>
   </div>
   <div class="comment-text flex-grow-1">
     <p><%= comment.content %></p>
