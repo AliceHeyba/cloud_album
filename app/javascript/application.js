@@ -19,4 +19,6 @@ application.load(definitionsFromContext(context));
 //   document.querySelector(".qr-code").classList.toggle("d-none")
 // });
 
-//require("@rails/ujs").start()
+
+// require("@rails/ujs").start()
+
